@@ -1,0 +1,70 @@
+:root {
+    --bg-dark: #111216;
+    --bg-panel: #1b1c22;
+    --text-main: #eeeeee;
+    --accent: #ff4d4d;
+    --pin-size: 32px; /* Dynamic Variable */
+}
+
+body { margin: 0; padding: 0; font-family: sans-serif; background: #000; overflow: hidden; }
+
+/* MAP CONTAINER */
+#map { width: 100vw; height: 100vh; background: #0b0b0b; z-index: 1; }
+
+/* SIDEBAR */
+#sidebar {
+    position: absolute; top: 0; left: 0; bottom: 0;
+    width: 300px; background: var(--bg-dark); color: var(--text-main);
+    z-index: 1000; overflow-y: auto; box-shadow: 2px 0 10px rgba(0,0,0,0.5);
+    display: flex; flex-direction: column;
+}
+
+.sidebar-header { padding: 20px; border-bottom: 1px solid #333; }
+#searchBox {
+    width: 100%; padding: 10px; margin-top: 10px;
+    background: #222; border: 1px solid #444; color: white; border-radius: 4px;
+}
+
+.controls { display: flex; gap: 10px; padding: 10px 20px; }
+.controls button { flex: 1; padding: 5px; background: #333; color: white; border: 1px solid #555; cursor: pointer; }
+
+/* CATEGORY LIST */
+.group-header {
+    padding: 10px 20px; background: var(--bg-panel); font-weight: bold;
+    cursor: pointer; border-bottom: 1px solid #222;
+    display: flex; justify-content: space-between;
+}
+.group-items { display: block; }
+.group-items.collapsed { display: none; }
+
+.filter-item {
+    padding: 8px 20px; display: flex; align-items: center; justify-content: space-between;
+    cursor: pointer; border-bottom: 1px solid #222; font-size: 0.9rem;
+}
+.filter-item:hover { background: #222; }
+.filter-item.disabled { opacity: 0.5; }
+
+.icon-preview { margin-right: 10px; font-size: 1.2rem; width: 25px; text-align: center; }
+.count-badge { color: #777; font-size: 0.8rem; }
+
+/* SLIDER */
+.slider-container { padding: 20px; border-top: 1px solid #333; }
+input[type=range] { width: 100%; }
+
+/* MARKER STYLES */
+.custom-div-icon {
+    background: transparent;
+    display: flex; justify-content: center; align-items: center;
+    font-size: var(--pin-size);
+    /* Text Shadow acts as border for emojis */
+    text-shadow: 0 0 2px black, 0 0 4px black;
+    transition: transform 0.1s;
+}
+.custom-div-icon:hover { transform: scale(1.2); z-index: 1000 !important; }
+
+/* DEV TOOLS */
+#devTools {
+    padding: 20px; background: #2a1a1a; border-top: 2px solid red;
+    /* Set display: none; here to hide it for public users later */
+}
+#exportArea { width: 100%; height: 100px; background: #111; color: #0f0; font-family: monospace; font-size: 10px; }

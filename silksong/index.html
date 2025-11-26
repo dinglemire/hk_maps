@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Silksong Interactive Map</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <style>
+        body { margin: 0; padding: 0; background: #000; }
+        
+        /* BACKGROUND COLOR CONTROL */
+        #map { width: 100vw; height: 100vh; background: #0b0b0b; } /* Change this hex code to change map background */
+        
+        /* Fix for transparent images in Leaflet */
+        .leaflet-image-layer { image-rendering: pixelated; } 
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        // 1. MAP SETTINGS
+        const mapWidth = 6300;  // Approximate width of your new map
+        const mapHeight = 4400; // Approximate height
+        const mapUrl = 'map.png'; // Make sure you rename the file to map.png
+
+        const map = L.map('map', {
+            crs: L.CRS.Simple,
+            minZoom: -3,
+            maxZoom: 1,
+            zoomSnap: 0.5,
+            attributionControl: false
+        });
+
+        const bounds = [[0, 0], [mapHeight, mapWidth]];
+        L.imageOverlay(mapUrl, bounds).addTo(map);
+        map.fitBounds(bounds);
+
+        // Example Marker
+        L.marker([2200, 3150]).addTo(map).bindPopup("<b>Moss Grotto</b><br>Starting Area");
+    </script>
+</body>
+</html>

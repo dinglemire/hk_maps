@@ -1,43 +1,54 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Silksong Interactive Map</title>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Silksong Interactive Map</title>
+    <!-- Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-    <style>
-        body { margin: 0; padding: 0; background: #000; }
-        
-        /* BACKGROUND COLOR CONTROL */
-        #map { width: 100vw; height: 100vh; background: #0b0b0b; } /* Change this hex code to change map background */
-        
-        /* Fix for transparent images in Leaflet */
-        .leaflet-image-layer { image-rendering: pixelated; } 
-    </style>
+    <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+
+    <!-- 1. SIDEBAR MENU -->
+    <div id="sidebar">
+        <div class="sidebar-header">
+            <h2>Pharloom Map</h2>
+            <input type="text" id="searchBox" placeholder="Search Target..." />
+        </div>
+
+        <div class="controls">
+            <button onclick="showAll()">Show All</button>
+            <button onclick="hideAll()">Hide All</button>
+        </div>
+
+        <!-- Categories injected by JS -->
+        <div id="filterList"></div>
+
+        <!-- Marker Size Slider -->
+        <div class="slider-container">
+            <label>Marker Size</label>
+            <input type="range" min="16" max="64" value="32" id="iconSizeSlider">
+        </div>
+
+        <!-- DEV TOOLS (Hidden by default in CSS, toggle to use) -->
+        <div id="devTools">
+            <h3>🛠️ Admin Mode</h3>
+            <label><input type="checkbox" id="editModeToggle"> Enable Click-to-Place</label>
+            <select id="markerTypeSelector"></select>
+            <textarea id="exportArea" placeholder="JSON will appear here..."></textarea>
+            <button onclick="copyJSON()">Copy JSON</button>
+        </div>
+    </div>
+
+    <!-- 2. THE MAP -->
     <div id="map"></div>
 
+    <!-- Leaflet JS -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <script>
-        // 1. MAP SETTINGS
-        const mapWidth = 6300;  // Approximate width of your new map
-        const mapHeight = 4400; // Approximate height
-        const mapUrl = 'map.png'; // Make sure you rename the file to map.png
-
-        const map = L.map('map', {
-            crs: L.CRS.Simple,
-            minZoom: -3,
-            maxZoom: 1,
-            zoomSnap: 0.5,
-            attributionControl: false
-        });
-
-        const bounds = [[0, 0], [mapHeight, mapWidth]];
-        L.imageOverlay(mapUrl, bounds).addTo(map);
-        map.fitBounds(bounds);
-
-        // Example Marker
-        L.marker([2200, 3150]).addTo(map).bindPopup("<b>Moss Grotto</b><br>Starting Area");
-    </script>
+    <!-- Our Data -->
+    <script src="data.js"></script>
+    <!-- Main Logic -->
+    <script src="script.js"></script>
 </body>
 </html>

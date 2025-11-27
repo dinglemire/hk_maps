@@ -3557,5 +3557,277 @@ const mapData = [
         "y": 1984,
         "title": "Lost Flea",
         "desc": ""
+    },
+    //craftmetal:
+    {
+        "id": "craftmetal_1578_2374",
+        "type": "craftmetal",
+        "x": 1578,
+        "y": 2374,
+        "title": "Craftmetal",
+        "desc": ""
+    },
+    {
+        "id": "craftmetal_1546_1113",
+        "type": "craftmetal",
+        "x": 1546,
+        "y": 1113,
+        "title": "Craftmetal",
+        "desc": ""
+    },
+    {
+        "id": "craftmetal_3260_2438",
+        "type": "craftmetal",
+        "x": 3260,
+        "y": 2438,
+        "title": "Craftmetal",
+        "desc": ""
+    },
+    {
+        "id": "craftmetal_3133_2314",
+        "type": "craftmetal",
+        "x": 3133,
+        "y": 2314,
+        "title": "Craftmetal",
+        "desc": ""
+    },
+    {
+        "id": "craftmetal_2506_1283",
+        "type": "craftmetal",
+        "x": 2506,
+        "y": 1283,
+        "title": "Craftmetal",
+        "desc": ""
+    },
+    {
+        "id": "craftmetal_4056_954",
+        "type": "craftmetal",
+        "x": 4056,
+        "y": 954,
+        "title": "Craftmetal",
+        "desc": ""
+    },
+    {
+        "id": "craftmetal_5960_3331",
+        "type": "craftmetal",
+        "x": 5960,
+        "y": 3331,
+        "title": "Craftmetal",
+        "desc": ""
+    },
+    {
+        "id": "craftmetal_3953_3442",
+        "type": "craftmetal",
+        "x": 3953,
+        "y": 3442,
+        "title": "Craftmetal",
+        "desc": ""
+    },
+    //mossberry:
+    {
+        "id": "mossberry_1394_1013",
+        "type": "mossberry",
+        "x": 1394,
+        "y": 1013,
+        "title": "Mossberry",
+        "desc": ""
+    },
+    {
+        "id": "mossberry_1395_816",
+        "type": "mossberry",
+        "x": 1395,
+        "y": 816,
+        "title": "Mossberry",
+        "desc": ""
+    },
+    {
+        "id": "mossberry_1233_895",
+        "type": "mossberry",
+        "x": 1233,
+        "y": 895,
+        "title": "Mossberry",
+        "desc": ""
+    },
+    {
+        "id": "mossberry_1431_1200",
+        "type": "mossberry",
+        "x": 1431,
+        "y": 1200,
+        "title": "Mossberry",
+        "desc": ""
+    },
+    {
+        "id": "mossberry_1691_1375",
+        "type": "mossberry",
+        "x": 1691,
+        "y": 1375,
+        "title": "Mossberry",
+        "desc": ""
+    },
+    //Pollip Flower:
+    
+    {
+        "id": "pollip_1975_1927",
+        "type": "pollip",
+        "x": 1975,
+        "y": 1927,
+        "title": "Pollip Flower",
+        "desc": ""
+    },
+    {
+        "id": "pollip_2181_1947",
+        "type": "pollip",
+        "x": 2181,
+        "y": 1947,
+        "title": "Pollip Flower",
+        "desc": ""
+    },
+    {
+        "id": "pollip_2262_1825",
+        "type": "pollip",
+        "x": 2262,
+        "y": 1825,
+        "title": "Pollip Flower",
+        "desc": ""
+    },
+    {
+        "id": "pollip_2488_1801",
+        "type": "pollip",
+        "x": 2488,
+        "y": 1801,
+        "title": "Pollip Flower",
+        "desc": ""
+    },
+    {
+        "id": "pollip_2406_1884",
+        "type": "pollip",
+        "x": 2406,
+        "y": 1884,
+        "title": "Pollip Flower",
+        "desc": ""
+    },
+    {
+        "id": "pollip_2163_2141",
+        "type": "pollip",
+        "x": 2163,
+        "y": 2141,
+        "title": "Pollip Flower",
+        "desc": ""
+    },
+        //Flintbeetle
+        {
+        "id": "flint_2599_1370",
+        "type": "flint",
+        "x": 2599,
+        "y": 1370,
+        "title": "Flintbeetle",
+        "desc": ""
+    },
+    {
+        "id": "flint_2083_1504",
+        "type": "flint",
+        "x": 2083,
+        "y": 1504,
+        "title": "Flintbeetle",
+        "desc": ""
+    },
+    {
+        "id": "flint_1739_1228",
+        "type": "flint",
+        "x": 1739,
+        "y": 1228,
+        "title": "Flintbeetle",
+        "desc": ""
+    },
+        //Delicacy:
+        {
+        "id": "delicacy_1703_1422",
+        "type": "delicacy",
+        "x": 1703,
+        "y": 1422,
+        "title": "Mossberry Stew",
+        "desc": ""
+    },
+    {
+        "id": "delicacy_816_2790",
+        "type": "delicacy",
+        "x": 816,
+        "y": 2790,
+        "title": "Crustnut",
+        "desc": ""
+    },
+    {
+        "id": "delicacy_2700_1727",
+        "type": "delicacy",
+        "x": 2700,
+        "y": 1727,
+        "title": "Courier's Rasher",
+        "desc": ""
+    },
+    {
+        "id": "delicacy_3754_1853",
+        "type": "delicacy",
+        "x": 3754,
+        "y": 1853,
+        "title": "Vintage Nectar",
+        "desc": ""
+    },
+    {
+        "id": "delicacy_4544_2183",
+        "type": "delicacy",
+        "x": 4544,
+        "y": 2183,
+        "title": "Pickled Muckmaggot",
+        "desc": ""
+    },
+        //Cogheart:
+        {
+        "id": "cogheart_2464_3269",
+        "type": "cogheart",
+        "x": 2464,
+        "y": 3269,
+        "title": "Cogheart",
+        "desc": ""
+    },
+    {
+        "id": "cogheart_3863_3537",
+        "type": "cogheart",
+        "x": 3863,
+        "y": 3537,
+        "title": "Cogheart",
+        "desc": ""
+    },
+    {
+        "id": "cogheart_3889_2994",
+        "type": "cogheart",
+        "x": 3889,
+        "y": 2994,
+        "title": "Cogheart",
+        "desc": ""
+    },
+       //Plasmium:
+        {
+        "id": "plasmium_527_1307",
+        "type": "plasmium",
+        "x": 527,
+        "y": 1307,
+        "title": "Plasmium",
+        "desc": ""
+    },
+    {
+        "id": "plasmium_771_1518",
+        "type": "plasmium",
+        "x": 771,
+        "y": 1518,
+        "title": "Plasmium",
+        "desc": ""
+    },
+    {
+        "id": "plasmium_883_1329",
+        "type": "plasmium",
+        "x": 883,
+        "y": 1329,
+        "title": "Plasmium",
+        "desc": ""
     }
 ];

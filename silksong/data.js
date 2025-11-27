@@ -3549,5 +3549,13 @@ const mapData = [
         "y": 1263,
         "title": "Lost Flea",
         "desc": ""
+    },
+    {
+        "id": "flea_3336_1984",
+        "type": "flea",
+        "x": 3336,
+        "y": 1984,
+        "title": "Lost Flea",
+        "desc": ""
     }
 ];

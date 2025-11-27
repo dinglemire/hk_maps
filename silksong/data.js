@@ -1803,5 +1803,94 @@ const mapData = [
         "y": 2611,
         "title": "Architect's Key",
         "desc": ""
+    },
+    //Ability:
+    {
+        "id": "ability_1441_3998",
+        "type": "ability",
+        "x": 1441,
+        "y": 3998,
+        "title": "Faydown Cloak",
+        "desc": ""
+    },
+    {
+        "id": "ability_600_2256",
+        "type": "ability",
+        "x": 600,
+        "y": 2256,
+        "title": "Needle Strike",
+        "desc": ""
+    },
+    {
+        "id": "ability_950_1012",
+        "type": "ability",
+        "x": 950,
+        "y": 1012,
+        "title": "Elegy of the Deep",
+        "desc": ""
+    },
+    {
+        "id": "ability_1953_814",
+        "type": "ability",
+        "x": 1953,
+        "y": 814,
+        "title": "Sylphsong",
+        "desc": ""
+    },
+    {
+        "id": "ability_2030_2032",
+        "type": "ability",
+        "x": 2030,
+        "y": 2032,
+        "title": "Cling Grip",
+        "desc": ""
+    },
+    {
+        "id": "ability_2748_1834",
+        "type": "ability",
+        "x": 2748,
+        "y": 1834,
+        "title": "Needolin",
+        "desc": ""
+    },
+    {
+        "id": "ability_3295_2494",
+        "type": "ability",
+        "x": 3295,
+        "y": 2494,
+        "title": "Clawline",
+        "desc": ""
+    },
+    {
+        "id": "ability_3716_2745",
+        "type": "ability",
+        "x": 3716,
+        "y": 2745,
+        "title": "Beastling Call",
+        "desc": ""
+    },
+    {
+        "id": "ability_3455_1222",
+        "type": "ability",
+        "x": 3455,
+        "y": 1222,
+        "title": "Swift Step",
+        "desc": ""
+    },
+    {
+        "id": "ability_3643_30",
+        "type": "ability",
+        "x": 3643,
+        "y": 30,
+        "title": "Silk Soar",
+        "desc": ""
+    },
+    {
+        "id": "ability_4842_1013",
+        "type": "ability",
+        "x": 4842,
+        "y": 1013,
+        "title": "Drifter's Cloak",
+        "desc": ""
     }
 ];

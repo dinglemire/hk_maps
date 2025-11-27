@@ -3,100 +3,72 @@ const TILE_SIZE = 256;
 const MIN_ZOOM = 0;
 const MAX_ZOOM = 9;
 
-// 1. SETUP MAP
-// CRS.Simple is for flat maps (game worlds)
+// 1. DEFINE THE MAP
+// L.CRS.Simple means 1 unit = 1 pixel at Zoom 0.
+// Since your map at Zoom 0 is likely 1 tile (256x256), the whole world is [0,0] to [-256, 256].
 const map = L.map('map', {
     crs: L.CRS.Simple,
     minZoom: MIN_ZOOM,
     maxZoom: MAX_ZOOM,
-    zoomControl: false // We add a prettier one later
+    zoomControl: false
 });
 
-// 2. CALCULATE CENTER (Based on your file structure)
-// Your map at Zoom 9 spans roughly:
-// X: 0 to 180  (Width ~46,000 px)
-// Y: 0 to 280  (Height ~71,000 px)
-// We center the camera so you don't see black space.
-const mapWidth = 180 * TILE_SIZE;
-const mapHeight = 280 * TILE_SIZE;
+// 2. THE TILE LAYER
+// We use a standard tile layer. 
+// Your file structure is standard (z/x/y), so we don't need complex scripts unless Y is inverted.
+L.tileLayer('my_tiles/{z}/{x}/{y}.png', {
+    tileSize: TILE_SIZE,
+    noWrap: true,
+    minZoom: MIN_ZOOM,
+    maxZoom: MAX_ZOOM,
+    errorTileUrl: '', // Keep clean
+    attribution: 'Hollow Knight'
+}).addTo(map);
 
-// In Leaflet Simple, Y goes negative (Down)
-// We define the corners of your map image
-const bounds = [[0, 0], [-mapHeight, mapWidth]];
+// 3. SET THE VIEW CORRECTLY
+// At Zoom 0, your map is roughly 256 units wide/high.
+// In CRS.Simple, Y goes negative (down).
+// Center roughly at [ -Height/2, Width/2 ]
+// We start at Zoom 2 to give you a good overview.
+map.setView([-100, 100], 2);
 
-// 3. THE TILE LAYER (The Glue)
-// We create a custom layer to handle potential Y-axis inversion issues
-const HollowKnightLayer = L.TileLayer.extend({
-    createTile: function (coords, done) {
-        const tile = document.createElement('div');
-        const img = document.createElement('img');
-        
-        // --- COORDINATE FIXER ---
-        // Leaflet uses negative Y coordinates for 'Simple' CRS.
-        // We convert them to positive for your file system.
-        let x = coords.x;
-        let y = coords.y;
-        let z = coords.z;
-
-        // FIX 1: Handle negative Y (Standard Leaflet behavior)
-        // If Leaflet asks for y = -10, we look for file 10.
-        y = Math.abs(y);
-
-        // FIX 2: Invert Y (Optional - Toggle this if map is upside down!)
-        // If the map looks "scrambled", uncomment the line below:
-        // y = (Math.pow(2, z) - 1) - y; 
-        
-        // Build the URL
-        // Note: We remove the negative sign if it exists to match your folders 0, 1, 2...
-        const url = `my_tiles/${z}/${x}/${y}.png`;
-
-        // Set up image
-        img.src = url;
-        img.style.width = '256px';
-        img.style.height = '256px';
-        
-        // --- ERROR HANDLING ---
-        // If a tile is missing (black space), just show nothing
-        img.onerror = function() {
-            this.style.display = 'none';
-            // Debugging text for missing tiles (Optional)
-            tile.innerHTML = `<div class="tile-label">MISSING<br>${z}/${x}/${y}</div>`;
-        };
-        
-        // --- SUCCESS ---
-        img.onload = function() {
-            done(null, tile);
-        };
-
-        tile.appendChild(img);
-        
-        // DEBUG: Uncomment the next line to see Grid Numbers on top of images
-        // tile.innerHTML += `<div class="tile-label" style="position:absolute;top:0;left:0;z-index:1000;">${z}/${x}/${y}</div>`;
-
-        return tile;
-    }
-});
-
-// Add the layer to the map
-new HollowKnightLayer('', { tileSize: TILE_SIZE }).addTo(map);
-
-// 4. SET VIEW
-// Center the map and limit dragging
-map.setMaxBounds(bounds);
-map.setView([-mapHeight / 2, mapWidth / 2], 4); // Start zoomed out a bit
-
-// 5. ADD CONTROLS
+// 4. CONTROLS
 L.control.zoom({ position: 'topright' }).addTo(map);
 
-// 6. CLICK FOR COORDINATES (For placing icons later)
-map.on('click', function(e) {
-    console.log("Map Click:", e.latlng);
-    L.popup()
-        .setLatLng(e.latlng)
-        .setContent(`
-            <strong>Coordinates:</strong><br>
-            X: ${e.latlng.lng.toFixed(0)}<br>
-            Y: ${e.latlng.lat.toFixed(0)}
-        `)
-        .openOn(map);
+// 5. DEBUG HELPER (Yellow Box)
+// If the map is still black, move your mouse. 
+// The yellow box will tell you what Tile the browser is looking for.
+// Compare that number to your folders.
+const infoBox = L.control({position: 'bottomleft'});
+
+infoBox.onAdd = function (map) {
+    this._div = L.DomUtil.create('div', 'tile-label');
+    this._div.style.background = "rgba(0,0,0,0.5)";
+    this._div.style.padding = "10px";
+    this._div.style.color = "#fff";
+    this.update("Move mouse...");
+    return this._div;
+};
+
+infoBox.update = function (props) {
+    this._div.innerHTML = props;
+};
+
+infoBox.addTo(map);
+
+map.on('mousemove', function(e) {
+    const z = map.getZoom();
+    
+    // Calculate the TILE coordinate based on mouse position and zoom
+    // Formula: Pixel / 256
+    const point = map.project(e.latlng, z);
+    const tileX = Math.floor(point.x / TILE_SIZE);
+    const tileY = Math.floor(point.y / TILE_SIZE);
+    
+    infoBox.update(`
+        <strong>Zoom: ${z}</strong><br>
+        Looking for file: <strong>${z}/${tileX}/${tileY}.png</strong><br>
+        <br>
+        Map Coords: ${e.latlng.lat.toFixed(1)}, ${e.latlng.lng.toFixed(1)}
+    `);
 });

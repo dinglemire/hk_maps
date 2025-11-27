@@ -2384,5 +2384,503 @@ const mapData = [
         "y": 1765,
         "title": "Memory Locket",
         "desc": ""
+    },
+    //Crest:
+    {
+        "id": "crest_689_1087",
+        "type": "crest",
+        "x": 689,
+        "y": 1087,
+        "title": "Crest of Wanderer",
+        "desc": ""
+    },
+    {
+        "id": "crest_950_1037",
+        "type": "crest",
+        "x": 950,
+        "y": 1037,
+        "title": "Crest of Shaman",
+        "desc": ""
+    },
+    {
+        "id": "crest_2990_1934",
+        "type": "crest",
+        "x": 2990,
+        "y": 1934,
+        "title": "Crest of Witch",
+        "desc": ""
+    },
+    {
+        "id": "crest_3071_1828",
+        "type": "crest",
+        "x": 3071,
+        "y": 1828,
+        "title": "Crest of Reaper",
+        "desc": ""
+    },
+    {
+        "id": "crest_3293_2654",
+        "type": "crest",
+        "x": 3293,
+        "y": 2654,
+        "title": "Crest of Architect",
+        "desc": ""
+    },
+    {
+        "id": "crest_4182_1412",
+        "type": "crest",
+        "x": 4182,
+        "y": 1412,
+        "title": "Crest of Beast",
+        "desc": ""
+    },
+    //Tools:
+    {
+        "id": "tool_1401_3932",
+        "type": "tool",
+        "x": 1401,
+        "y": 3932,
+        "title": "Silkshot (Weaver)",
+        "desc": ""
+    },
+    {
+        "id": "tool_1400_3713",
+        "type": "tool",
+        "x": 1400,
+        "y": 3713,
+        "title": "Pin Badge",
+        "desc": ""
+    },
+    {
+        "id": "tool_671_3122",
+        "type": "tool",
+        "x": 671,
+        "y": 3122,
+        "title": "Memory Crystal",
+        "desc": ""
+    },
+    {
+        "id": "tool_529_2946",
+        "type": "tool",
+        "x": 529,
+        "y": 2946,
+        "title": "Conchcutter",
+        "desc": ""
+    },
+    {
+        "id": "tool_1076_3002",
+        "type": "tool",
+        "x": 1076,
+        "y": 3002,
+        "title": "Volt Filament",
+        "desc": ""
+    },
+    {
+        "id": "tool_998_2498",
+        "type": "tool",
+        "x": 998,
+        "y": 2498,
+        "title": "Thief's Mark",
+        "desc": ""
+    },
+    {
+        "id": "tool_1007_2502",
+        "type": "tool",
+        "x": 1007,
+        "y": 2502,
+        "title": "Snitch Pick",
+        "desc": ""
+    },
+    {
+        "id": "tool_736_2362",
+        "type": "tool",
+        "x": 736,
+        "y": 2362,
+        "title": "Magnetite Dice",
+        "desc": ""
+    },
+    {
+        "id": "tool_784_1538",
+        "type": "tool",
+        "x": 784,
+        "y": 1538,
+        "title": "Plasmium Phial",
+        "desc": ""
+    },
+    {
+        "id": "tool_1055_1561",
+        "type": "tool",
+        "x": 1055,
+        "y": 1561,
+        "title": "Dead Bug's Purse",
+        "desc": ""
+    },
+    {
+        "id": "tool_1063_1563",
+        "type": "tool",
+        "x": 1063,
+        "y": 1563,
+        "title": "Shell Satchel",
+        "desc": ""
+    },
+    {
+        "id": "tool_1073_822",
+        "type": "tool",
+        "x": 1073,
+        "y": 822,
+        "title": "Weavelight",
+        "desc": ""
+    },
+    {
+        "id": "tool_1527_1123",
+        "type": "tool",
+        "x": 1527,
+        "y": 1123,
+        "title": "Magnetite Brooch",
+        "desc": ""
+    },
+    {
+        "id": "tool_1709_915",
+        "type": "tool",
+        "x": 1709,
+        "y": 915,
+        "title": "Snare Setter",
+        "desc": ""
+    },
+    {
+        "id": "tool_1740_1305",
+        "type": "tool",
+        "x": 1740,
+        "y": 1305,
+        "title": "Compass",
+        "desc": ""
+    },
+    {
+        "id": "tool_1818_1418",
+        "type": "tool",
+        "x": 1818,
+        "y": 1418,
+        "title": "Druid's Eye",
+        "desc": ""
+    },
+    {
+        "id": "tool_2051_1234",
+        "type": "tool",
+        "x": 2051,
+        "y": 1234,
+        "title": "Shard Pendant",
+        "desc": ""
+    },
+    {
+        "id": "tool_2058_1804",
+        "type": "tool",
+        "x": 2058,
+        "y": 1804,
+        "title": "Pollip Pouch",
+        "desc": ""
+    },
+    {
+        "id": "tool_2570_1721",
+        "type": "tool",
+        "x": 2570,
+        "y": 1721,
+        "title": "Longpin",
+        "desc": ""
+    },
+    {
+        "id": "tool_2710_1699",
+        "type": "tool",
+        "x": 2710,
+        "y": 1699,
+        "title": "Multibinder",
+        "desc": ""
+    },
+    {
+        "id": "tool_2563_2204",
+        "type": "tool",
+        "x": 2563,
+        "y": 2204,
+        "title": "Delver's Drill",
+        "desc": ""
+    },
+    {
+        "id": "tool_2693_2212",
+        "type": "tool",
+        "x": 2693,
+        "y": 2212,
+        "title": "Wispfire Lantern",
+        "desc": ""
+    },
+    {
+        "id": "tool_3025_2024",
+        "type": "tool",
+        "x": 3025,
+        "y": 2024,
+        "title": "Pimpillo",
+        "desc": ""
+    },
+    {
+        "id": "tool_3124_1690",
+        "type": "tool",
+        "x": 3124,
+        "y": 1690,
+        "title": "Flea Brew",
+        "desc": ""
+    },
+    {
+        "id": "tool_3405_2640",
+        "type": "tool",
+        "x": 3405,
+        "y": 2640,
+        "title": "Sawtooth Circlet",
+        "desc": ""
+    },
+    {
+        "id": "tool_3393_2643",
+        "type": "tool",
+        "x": 3393,
+        "y": 2643,
+        "title": "Cogwork Wheel",
+        "desc": ""
+    },
+    {
+        "id": "tool_3393_2658",
+        "type": "tool",
+        "x": 3393,
+        "y": 2658,
+        "title": "Scuttlebrace",
+        "desc": ""
+    },
+    {
+        "id": "tool_3403_2671",
+        "type": "tool",
+        "x": 3403,
+        "y": 2671,
+        "title": "Silkshot (Twelfth Architect)",
+        "desc": ""
+    },
+    {
+        "id": "tool_3309_2833",
+        "type": "tool",
+        "x": 3309,
+        "y": 2833,
+        "title": "Injector Band",
+        "desc": ""
+    },
+    {
+        "id": "tool_2878_3682",
+        "type": "tool",
+        "x": 2878,
+        "y": 3682,
+        "title": "Cogfly",
+        "desc": ""
+    },
+    {
+        "id": "tool_2897_3489",
+        "type": "tool",
+        "x": 2897,
+        "y": 3489,
+        "title": "Rosary Cannon",
+        "desc": ""
+    },
+    {
+        "id": "tool_3090_3530",
+        "type": "tool",
+        "x": 3090,
+        "y": 3530,
+        "title": "Reserve Bind",
+        "desc": ""
+    },
+    {
+        "id": "tool_3811_3705",
+        "type": "tool",
+        "x": 3811,
+        "y": 3705,
+        "title": "Voltvessels",
+        "desc": ""
+    },
+    {
+        "id": "tool_3959_3386",
+        "type": "tool",
+        "x": 3959,
+        "y": 3386,
+        "title": "Spool Extender",
+        "desc": ""
+    },
+    {
+        "id": "tool_3944_3388",
+        "type": "tool",
+        "x": 3944,
+        "y": 3388,
+        "title": "Ascendant's Grip",
+        "desc": ""
+    },
+    {
+        "id": "tool_3943_3420",
+        "type": "tool",
+        "x": 3943,
+        "y": 3420,
+        "title": "Spider Strings",
+        "desc": ""
+    },
+    {
+        "id": "tool_3714_3015",
+        "type": "tool",
+        "x": 3714,
+        "y": 3015,
+        "title": "Claw Mirror",
+        "desc": ""
+    },
+    {
+        "id": "tool_3714_3035",
+        "type": "tool",
+        "x": 3714,
+        "y": 3035,
+        "title": "Dark Mirror / Claw Mirrors",
+        "desc": ""
+    },
+    {
+        "id": "tool_4593_3333",
+        "type": "tool",
+        "x": 4593,
+        "y": 3333,
+        "title": "Longclaw",
+        "desc": ""
+    },
+    {
+        "id": "tool_5191_3401",
+        "type": "tool",
+        "x": 5191,
+        "y": 3401,
+        "title": "Wreath of Purity",
+        "desc": ""
+    },
+    {
+        "id": "tool_5540_3305",
+        "type": "tool",
+        "x": 5540,
+        "y": 3305,
+        "title": "Egg of Flealia",
+        "desc": ""
+    },
+    {
+        "id": "tool_5857_3204",
+        "type": "tool",
+        "x": 5857,
+        "y": 3204,
+        "title": "Throwing Ring",
+        "desc": ""
+    },
+    {
+        "id": "tool_4850_2886",
+        "type": "tool",
+        "x": 4850,
+        "y": 2886,
+        "title": "Quick Sling",
+        "desc": ""
+    },
+    {
+        "id": "tool_5040_1992",
+        "type": "tool",
+        "x": 5040,
+        "y": 1992,
+        "title": "Threefold Pin",
+        "desc": ""
+    },
+    {
+        "id": "tool_5741_918",
+        "type": "tool",
+        "x": 5741,
+        "y": 918,
+        "title": "Silkspeed Anklets",
+        "desc": ""
+    },
+    {
+        "id": "tool_4574_1313",
+        "type": "tool",
+        "x": 4574,
+        "y": 1313,
+        "title": "Weighted Belt",
+        "desc": ""
+    },
+    {
+        "id": "tool_4322_1013",
+        "type": "tool",
+        "x": 4322,
+        "y": 1013,
+        "title": "Warding Bell",
+        "desc": ""
+    },
+    {
+        "id": "tool_3915_992",
+        "type": "tool",
+        "x": 3915,
+        "y": 992,
+        "title": "Flintslate",
+        "desc": ""
+    },
+    {
+        "id": "tool_3535_1039",
+        "type": "tool",
+        "x": 3535,
+        "y": 1039,
+        "title": "Silkshot (Forge Daughter)",
+        "desc": ""
+    },
+    {
+        "id": "tool_3543_1005",
+        "type": "tool",
+        "x": 3543,
+        "y": 1005,
+        "title": "Sting Shard",
+        "desc": ""
+    },
+    {
+        "id": "tool_3556_1007",
+        "type": "tool",
+        "x": 3556,
+        "y": 1007,
+        "title": "Magma Bell",
+        "desc": ""
+    },
+    {
+        "id": "tool_2731_1246",
+        "type": "tool",
+        "x": 2731,
+        "y": 1246,
+        "title": "Straight Pin",
+        "desc": ""
+    },
+    {
+        "id": "tool_4482_1975",
+        "type": "tool",
+        "x": 4482,
+        "y": 1975,
+        "title": "Barbed Bracelet",
+        "desc": ""
+    },
+    {
+        "id": "tool_4414_2256",
+        "type": "tool",
+        "x": 4414,
+        "y": 2256,
+        "title": "Tacks",
+        "desc": ""
+    },
+    {
+        "id": "tool_3572_1513",
+        "type": "tool",
+        "x": 3572,
+        "y": 1513,
+        "title": "Fractured Mask",
+        "desc": ""
+    },
+    {
+        "id": "tool_3554_1517",
+        "type": "tool",
+        "x": 3554,
+        "y": 1517,
+        "title": "Curveclaw",
+        "desc": ""
     }
 ];

@@ -1,93 +1,131 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Hollow Knight Map</title>
+    <title>HK Puzzle Solver</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <style>
-        body { margin: 0; background: #000; }
+        body { margin: 0; background: #000; font-family: sans-serif; }
         #map { width: 100vw; height: 100vh; background: #0c0c0c; }
-        .controls {
+        
+        /* CONTROL PANEL */
+        .solver-panel {
             position: absolute; top: 10px; right: 10px; z-index: 1000;
-            background: rgba(0,0,0,0.8); padding: 10px; border: 1px solid #444; color: white;
+            background: rgba(20, 20, 20, 0.9); padding: 15px;
+            color: white; border: 1px solid #444; width: 220px;
+            border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.5);
         }
-        button { cursor: pointer; padding: 5px 10px; background: #0074D9; color: white; border: none; font-size: 14px; }
-        button:hover { background: #0056b3; }
+        .solver-panel h3 { margin: 0 0 10px 0; color: #FFD700; text-align: center; }
+        .btn-row { display: flex; justify-content: space-between; margin-bottom: 5px; }
+        button {
+            background: #444; color: white; border: 1px solid #666;
+            padding: 8px; cursor: pointer; width: 48%; font-weight: bold;
+        }
+        button:hover { background: #666; }
+        button.active { background: #28a745; border-color: #28a745; }
+        .readout { font-family: monospace; text-align: center; color: #aaa; margin-top: 10px; font-size: 12px;}
+        .highlight { color: #0f0; font-weight: bold; }
     </style>
 </head>
 <body>
 
     <div id="map"></div>
     
-    <div class="controls">
-        <button onclick="toggleFix()">🧩 Fix Scramble (Toggle Mode)</button>
-        <div id="mode-display" style="margin-top:5px; font-size:12px;">Current: Standard</div>
+    <div class="solver-panel">
+        <h3>🧩 Puzzle Solver</h3>
+        
+        <div style="text-align:center; margin-bottom:5px;">Vertical Shift (Y)</div>
+        <div class="btn-row">
+            <button onclick="shift(0, -1)">⬆️ Up</button>
+            <button onclick="shift(0, 1)">⬇️ Down</button>
+        </div>
+
+        <div style="text-align:center; margin-bottom:5px;">Horizontal Shift (X)</div>
+        <div class="btn-row">
+            <button onclick="shift(-1, 0)">⬅️ Left</button>
+            <button onclick="shift(1, 0)">➡️ Right</button>
+        </div>
+
+        <hr style="border-color:#444">
+        
+        <button onclick="toggleInv()" id="btn-inv" style="width:100%">🔄 Flip Y-Axis</button>
+        
+        <div class="readout">
+            Offset X: <span id="val-x" class="highlight">0</span><br>
+            Offset Y: <span id="val-y" class="highlight">0</span>
+        </div>
     </div>
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script>
-        // --- CONFIG ---
+        // --- SETTINGS ---
         const TILE_SIZE = 256;
         
+        // --- STATE ---
+        let shiftX = 0;
+        let shiftY = 0;
+        let invertY = false; // Tries to fix upside-down maps
+
         // 1. SETUP MAP
-        // We use a standard "Simple" projection for game maps
         const map = L.map('map', {
-            crs: L.CRS.Simple,
+            crs: L.CRS.Simple, // Flat world
             minZoom: 0,
             maxZoom: 9,
-            zoomControl: false,
-            attributionControl: false
+            zoomControl: false
         });
 
-        // 2. TILE LOGIC
-        // We need a custom way to fetch tiles because Leaflet expects negative Y, 
-        // but your files are likely positive Y.
-        let useTMS = false; // Toggle this if tiles are scrambled
-
-        const CustomLayer = L.TileLayer.extend({
+        // 2. CUSTOM LAYER
+        const PuzzleLayer = L.TileLayer.extend({
             getTileUrl: function(coords) {
                 let z = coords.z;
-                let x = coords.x;
-                let y = coords.y;
+                
+                // Apply Shifting
+                let x = coords.x + shiftX;
+                let y = coords.y + shiftY;
 
-                // Leaflet uses negative Y for Simple CRS. We need positive for files.
-                // We check if we need to invert it (Standard) or flip it (TMS)
-                if (useTMS) {
-                    // "Bottom-Up" numbering
-                    y = (Math.pow(2, z) - 1) - y;
-                } else {
-                    // "Top-Down" numbering (Standard)
-                    y = Math.abs(y);
-                }
+                // Handle Leaflet's Negative Y (Standard behavior for Simple CRS)
+                // If Leaflet wants Y = -5 (5 tiles down), we convert to positive 5.
+                let finalY = invertY ? (-y - 1) : Math.abs(y);
 
-                return `my_tiles/${z}/${x}/${y}.png`;
+                return `my_tiles/${z}/${x}/${finalY}.png`;
             }
         });
 
-        let layer = new CustomLayer('', {
+        let layer = new PuzzleLayer('', {
             tileSize: TILE_SIZE,
             noWrap: true,
-            bounds: [[-100000, -100000], [100000, 100000]] // Allow scrolling everywhere
+            bounds: [[-100000, -100000], [100000, 100000]],
+            errorTileUrl: '' // Hide broken tiles so they don't distract
         }).addTo(map);
 
-        // 3. CENTER THE VIEW
-        // 0/0/0.png covers the area from [0,0] to [-256, 256].
-        // We center right in the middle of that first tile.
-        map.setView([-128, 128], 2); 
-
-        // 4. CONTROLS
+        // 3. VIEW
+        map.setView([-100, 100], 2);
         L.control.zoom({ position: 'topleft' }).addTo(map);
 
-        // 5. FIX BUTTON LOGIC
-        function toggleFix() {
-            useTMS = !useTMS; // Flip mode
-            
-            document.getElementById('mode-display').innerText = 
-                useTMS ? "Current: TMS (Bottom-Up)" : "Current: Standard (Top-Down)";
-            
-            layer.redraw(); // Reload images
+        // 4. LOGIC
+        function shift(x, y) {
+            shiftX += x;
+            shiftY += y;
+            updateUI();
         }
+
+        function toggleInv() {
+            invertY = !invertY;
+            document.getElementById('btn-inv').className = invertY ? 'active' : '';
+            updateUI();
+        }
+
+        function updateUI() {
+            document.getElementById('val-x').innerText = shiftX;
+            document.getElementById('val-y').innerText = shiftY;
+            layer.redraw(); // Force map refresh
+        }
+
+        // Debug click
+        map.on('click', e => {
+            console.log("Clicked", e.latlng);
+        });
 
     </script>
 </body>

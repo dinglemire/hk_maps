@@ -2053,5 +2053,175 @@ const mapData = [
         "y": 2879,
         "title": "Mask Shard",
         "desc": ""
+    },
+    //Silk Heart
+     {
+        "id": "silkheart_3206_4002",
+        "type": "silkheart",
+        "x": 3206,
+        "y": 4002,
+        "title": "Silk Heart",
+        "desc": ""
+    },
+    {
+        "id": "silkheart_2746_2706",
+        "type": "silkheart",
+        "x": 2746,
+        "y": 2706,
+        "title": "Silk Heart",
+        "desc": ""
+    },
+    {
+        "id": "silkheart_1809_1370",
+        "type": "silkheart",
+        "x": 1809,
+        "y": 1370,
+        "title": "Silk Heart",
+        "desc": ""
+    },
+    //Spool Fragment:
+    {
+        "id": "spool_1514_3252",
+        "type": "spool",
+        "x": 1514,
+        "y": 3252,
+        "title": "Spool Fragment",
+        "desc": ""
+    },
+    {
+        "id": "spool_995_2483",
+        "type": "spool",
+        "x": 995,
+        "y": 2483,
+        "title": "Spool Fragment",
+        "desc": ""
+    },
+    {
+        "id": "spool_1716_2541",
+        "type": "spool",
+        "x": 1716,
+        "y": 2541,
+        "title": "Spool Fragment",
+        "desc": ""
+    },
+    {
+        "id": "spool_2069_2714",
+        "type": "spool",
+        "x": 2069,
+        "y": 2714,
+        "title": "Spool Fragment",
+        "desc": ""
+    },
+    {
+        "id": "spool_1609_1252",
+        "type": "spool",
+        "x": 1609,
+        "y": 1252,
+        "title": "Spool Fragment",
+        "desc": ""
+    },
+    {
+        "id": "spool_1510_868",
+        "type": "spool",
+        "x": 1510,
+        "y": 868,
+        "title": "Spool Fragment",
+        "desc": ""
+    },
+    {
+        "id": "spool_3396_889",
+        "type": "spool",
+        "x": 3396,
+        "y": 889,
+        "title": "Spool Fragment",
+        "desc": ""
+    },
+    {
+        "id": "spool_2729_1701",
+        "type": "spool",
+        "x": 2729,
+        "y": 1701,
+        "title": "Spool Fragment",
+        "desc": ""
+    },
+    {
+        "id": "spool_3033_2437",
+        "type": "spool",
+        "x": 3033,
+        "y": 2437,
+        "title": "Spool Fragment",
+        "desc": ""
+    },
+    {
+        "id": "spool_3028_2766",
+        "type": "spool",
+        "x": 3028,
+        "y": 2766,
+        "title": "Spool Fragment",
+        "desc": ""
+    },
+    {
+        "id": "spool_3322_2838",
+        "type": "spool",
+        "x": 3322,
+        "y": 2838,
+        "title": "Spool Fragment",
+        "desc": ""
+    },
+    {
+        "id": "spool_3459_3090",
+        "type": "spool",
+        "x": 3459,
+        "y": 3090,
+        "title": "Spool Fragment",
+        "desc": ""
+    },
+    {
+        "id": "spool_3386_3518",
+        "type": "spool",
+        "x": 3386,
+        "y": 3518,
+        "title": "Spool Fragment",
+        "desc": ""
+    },
+    {
+        "id": "spool_3958_3417",
+        "type": "spool",
+        "x": 3958,
+        "y": 3417,
+        "title": "Spool Fragment",
+        "desc": ""
+    },
+    {
+        "id": "spool_3629_2411",
+        "type": "spool",
+        "x": 3629,
+        "y": 2411,
+        "title": "Spool Fragment",
+        "desc": ""
+    },
+    {
+        "id": "spool_4564_2064",
+        "type": "spool",
+        "x": 4564,
+        "y": 2064,
+        "title": "Spool Fragment",
+        "desc": ""
+    },
+    {
+        "id": "spool_4294_898",
+        "type": "spool",
+        "x": 4294,
+        "y": 898,
+        "title": "Spool Fragment",
+        "desc": ""
+    },
+    {
+        "id": "spool_2749_3934",
+        "type": "spool",
+        "x": 2749,
+        "y": 3934,
+        "title": "Spool Fragment",
+        "desc": ""
     }
 ];

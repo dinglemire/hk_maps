@@ -693,5 +693,101 @@ const mapData = [
         "y": 982,
         "title": "Bench",
         "desc": ""
+    },
+    {
+        "id": "bellway_1603_3022",
+        "type": "bellway",
+        "x": 1603,
+        "y": 3022,
+        "title": "Bellway - The Slob",
+        "desc": ""
+    },
+    {
+        "id": "bellway_1168_2376",
+        "type": "bellway",
+        "x": 1168,
+        "y": 2376,
+        "title": "Bellway - Blasted Steps",
+        "desc": ""
+    },
+    {
+        "id": "bellway_1735_1899",
+        "type": "bellway",
+        "x": 1735,
+        "y": 1899,
+        "title": "Bellway - Shellwood",
+        "desc": ""
+    },
+    {
+        "id": "bellway_1516_1103",
+        "type": "bellway",
+        "x": 1516,
+        "y": 1103,
+        "title": "Bellway - Bone Bottom",
+        "desc": ""
+    },
+    {
+        "id": "bellway_1882_1343",
+        "type": "bellway",
+        "x": 1882,
+        "y": 1343,
+        "title": "Bellway - The Marrow",
+        "desc": ""
+    },
+    {
+        "id": "bellway_3201_1024",
+        "type": "bellway",
+        "x": 3201,
+        "y": 1024,
+        "title": "Bellway - Deep Docks",
+        "desc": ""
+    },
+    {
+        "id": "bellway_4566_1107",
+        "type": "bellway",
+        "x": 4566,
+        "y": 1107,
+        "title": "Bellway - Far Fields",
+        "desc": ""
+    },
+    {
+        "id": "bellway_4459_2438",
+        "type": "bellway",
+        "x": 4459,
+        "y": 2438,
+        "title": "Bellway - Bilewater",
+        "desc": ""
+    },
+    {
+        "id": "bellway_4859_3504",
+        "type": "bellway",
+        "x": 4859,
+        "y": 3504,
+        "title": "Bellway - Putrified Ducts",
+        "desc": ""
+    },
+    {
+        "id": "bellway_3649_2926",
+        "type": "bellway",
+        "x": 3649,
+        "y": 2926,
+        "title": "Bellway - Grand Bellway",
+        "desc": ""
+    },
+    {
+        "id": "bellway_2793_1665",
+        "type": "bellway",
+        "x": 2793,
+        "y": 1665,
+        "title": "Bellway - Bellhart",
+        "desc": ""
+    },
+    {
+        "id": "bellway_3681_1741",
+        "type": "bellway",
+        "x": 3681,
+        "y": 1741,
+        "title": "Bellway - Greymoor",
+        "desc": ""
     }
 ];

@@ -1265,5 +1265,374 @@ const mapData = [
         "y": 1706,
         "title": "Bellhart Map",
         "desc": ""
+    },
+    //BOSS:
+    {
+        "id": "boss_1408_3660",
+        "type": "boss",
+        "x": 1408,
+        "y": 3660,
+        "title": "Pinstress",
+        "desc": ""
+    },
+    {
+        "id": "boss_1603_3442",
+        "type": "boss",
+        "x": 1603,
+        "y": 3442,
+        "title": "Broodmother",
+        "desc": ""
+    },
+    {
+        "id": "boss_527_3010",
+        "type": "boss",
+        "x": 527,
+        "y": 3010,
+        "title": "Crust King Khann",
+        "desc": ""
+    },
+    {
+        "id": "boss_702_2896",
+        "type": "boss",
+        "x": 702,
+        "y": 2896,
+        "title": "Raging Conchfly",
+        "desc": ""
+    },
+    {
+        "id": "boss_1085_2966",
+        "type": "boss",
+        "x": 1085,
+        "y": 2966,
+        "title": "Voltvyrm",
+        "desc": ""
+    },
+    {
+        "id": "boss_468_2624",
+        "type": "boss",
+        "x": 468,
+        "y": 2624,
+        "title": "Watcher at the Edge",
+        "desc": ""
+    },
+    {
+        "id": "boss_766_2346",
+        "type": "boss",
+        "x": 766,
+        "y": 2346,
+        "title": "Lost Garmond",
+        "desc": ""
+    },
+    {
+        "id": "boss_1006_2207",
+        "type": "boss",
+        "x": 1006,
+        "y": 2207,
+        "title": "Great Conchflies",
+        "desc": ""
+    },
+    {
+        "id": "boss_471_1265",
+        "type": "boss",
+        "x": 471,
+        "y": 1265,
+        "title": "Plasmified Zango",
+        "desc": ""
+    },
+    {
+        "id": "boss_358_1027",
+        "type": "boss",
+        "x": 358,
+        "y": 1027,
+        "title": "Summoned Saviour",
+        "desc": ""
+    },
+    {
+        "id": "boss_1128_1050",
+        "type": "boss",
+        "x": 1128,
+        "y": 1050,
+        "title": "Moss Mother",
+        "desc": ""
+    },
+    {
+        "id": "boss_1194_903",
+        "type": "boss",
+        "x": 1194,
+        "y": 903,
+        "title": "Moss Mother",
+        "desc": ""
+    },
+    {
+        "id": "boss_1069_809",
+        "type": "boss",
+        "x": 1069,
+        "y": 809,
+        "title": "Moss Mother x2",
+        "desc": ""
+    },
+    {
+        "id": "boss_1491_1112",
+        "type": "boss",
+        "x": 1491,
+        "y": 1112,
+        "title": "Skull Tyrant - Second Encouter",
+        "desc": ""
+    },
+    {
+        "id": "boss_1597_2274",
+        "type": "boss",
+        "x": 1597,
+        "y": 2274,
+        "title": "Nyleth",
+        "desc": ""
+    },
+    {
+        "id": "boss_1722_2276",
+        "type": "boss",
+        "x": 1722,
+        "y": 2276,
+        "title": "Shrine Guardian Seth",
+        "desc": ""
+    },
+    {
+        "id": "boss_1742_2529",
+        "type": "boss",
+        "x": 1742,
+        "y": 2529,
+        "title": "Last Judge",
+        "desc": ""
+    },
+    {
+        "id": "boss_1931_2983",
+        "type": "boss",
+        "x": 1931,
+        "y": 2983,
+        "title": "First Sinner",
+        "desc": ""
+    },
+    {
+        "id": "boss_2772_2707",
+        "type": "boss",
+        "x": 2772,
+        "y": 2707,
+        "title": "The Unravelled",
+        "desc": ""
+    },
+    {
+        "id": "boss_2695_2194",
+        "type": "boss",
+        "x": 2695,
+        "y": 2194,
+        "title": "Father of the Flame",
+        "desc": ""
+    },
+    {
+        "id": "boss_2748_1808",
+        "type": "boss",
+        "x": 2748,
+        "y": 1808,
+        "title": "Widow",
+        "desc": ""
+    },
+    {
+        "id": "boss_2172_2007",
+        "type": "boss",
+        "x": 2172,
+        "y": 2007,
+        "title": "Sister Splinter",
+        "desc": ""
+    },
+    {
+        "id": "boss_1828_1347",
+        "type": "boss",
+        "x": 1828,
+        "y": 1347,
+        "title": "Bell Beast",
+        "desc": ""
+    },
+    {
+        "id": "boss_2550_1226",
+        "type": "boss",
+        "x": 2550,
+        "y": 1226,
+        "title": "Skull Tyrant",
+        "desc": ""
+    },
+    {
+        "id": "boss_3169_-21",
+        "type": "boss",
+        "x": 3169,
+        "y": -21,
+        "title": "Lost Lace",
+        "desc": ""
+    },
+    {
+        "id": "boss_3519_783",
+        "type": "boss",
+        "x": 3519,
+        "y": 783,
+        "title": "Forebrothers Signis & Gron",
+        "desc": ""
+    },
+    {
+        "id": "boss_3514_1069",
+        "type": "boss",
+        "x": 3514,
+        "y": 1069,
+        "title": "Lace",
+        "desc": ""
+    },
+    {
+        "id": "boss_3147_1699",
+        "type": "boss",
+        "x": 3147,
+        "y": 1699,
+        "title": "Moorwing",
+        "desc": ""
+    },
+    {
+        "id": "boss_3088_3521",
+        "type": "boss",
+        "x": 3088,
+        "y": 3521,
+        "title": "Second Sentinel",
+        "desc": ""
+    },
+    {
+        "id": "boss_3227_3408",
+        "type": "boss",
+        "x": 3227,
+        "y": 3408,
+        "title": "Cogwork Dancers",
+        "desc": ""
+    },
+    {
+        "id": "boss_3225_3984",
+        "type": "boss",
+        "x": 3225,
+        "y": 3984,
+        "title": "Lace",
+        "desc": ""
+    },
+    {
+        "id": "boss_3213_4336",
+        "type": "boss",
+        "x": 3213,
+        "y": 4336,
+        "title": "Grand Mother Silk",
+        "desc": ""
+    },
+    {
+        "id": "boss_3698_3035",
+        "type": "boss",
+        "x": 3698,
+        "y": 3035,
+        "title": "Tormented Trobbio",
+        "desc": ""
+    },
+    {
+        "id": "boss_3700_3016",
+        "type": "boss",
+        "x": 3700,
+        "y": 3016,
+        "title": "Trobbio",
+        "desc": ""
+    },
+    {
+        "id": "boss_3696_2755",
+        "type": "boss",
+        "x": 3696,
+        "y": 2755,
+        "title": "Bell Eater",
+        "desc": ""
+    },
+    {
+        "id": "boss_4102_2487",
+        "type": "boss",
+        "x": 4102,
+        "y": 2487,
+        "title": "Phantom",
+        "desc": ""
+    },
+    {
+        "id": "boss_4201_1410",
+        "type": "boss",
+        "x": 4201,
+        "y": 1410,
+        "title": "Savage Beastfly",
+        "desc": ""
+    },
+    {
+        "id": "boss_4597_953",
+        "type": "boss",
+        "x": 4597,
+        "y": 953,
+        "title": "Fourth Chorus",
+        "desc": ""
+    },
+    {
+        "id": "boss_4596_978",
+        "type": "boss",
+        "x": 4596,
+        "y": 978,
+        "title": "Savage Beastfly",
+        "desc": ""
+    },
+    {
+        "id": "boss_5376_1211",
+        "type": "boss",
+        "x": 5376,
+        "y": 1211,
+        "title": "Gurr the Outcast",
+        "desc": ""
+    },
+    {
+        "id": "boss_5162_1522",
+        "type": "boss",
+        "x": 5162,
+        "y": 1522,
+        "title": "Skarrsinger Karmelita",
+        "desc": ""
+    },
+    {
+        "id": "boss_5008_1693",
+        "type": "boss",
+        "x": 5008,
+        "y": 1693,
+        "title": "Crawfather",
+        "desc": ""
+    },
+    {
+        "id": "boss_4546_2189",
+        "type": "boss",
+        "x": 4546,
+        "y": 2189,
+        "title": "Disgraced Chef Lugoli",
+        "desc": ""
+    },
+    {
+        "id": "boss_5553_2129",
+        "type": "boss",
+        "x": 5553,
+        "y": 2129,
+        "title": "Palestag",
+        "desc": ""
+    },
+    {
+        "id": "boss_5721_2162",
+        "type": "boss",
+        "x": 5721,
+        "y": 2162,
+        "title": "Clover Dancers",
+        "desc": ""
+    },
+    {
+        "id": "boss_4893_3192",
+        "type": "boss",
+        "x": 4893,
+        "y": 3192,
+        "title": "Groat The Great",
+        "desc": ""
     }
 ];

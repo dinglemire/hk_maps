@@ -3316,5 +3316,238 @@ const mapData = [
         "y": 2169,
         "title": "A Vassal Lost",
         "desc": ""
+    },
+    //lost flea:
+    {
+        "id": "flea_868_3471",
+        "type": "flea",
+        "x": 868,
+        "y": 3471,
+        "title": "Lost Flea",
+        "desc": ""
+    },
+    {
+        "id": "flea_1160_2704",
+        "type": "flea",
+        "x": 1160,
+        "y": 2704,
+        "title": "Lost Flea",
+        "desc": ""
+    },
+    {
+        "id": "flea_1064_2607",
+        "type": "flea",
+        "x": 1064,
+        "y": 2607,
+        "title": "Lost Flea",
+        "desc": ""
+    },
+    {
+        "id": "flea_1617_3242",
+        "type": "flea",
+        "x": 1617,
+        "y": 3242,
+        "title": "Lost Flea",
+        "desc": ""
+    },
+    {
+        "id": "flea_1712_3046",
+        "type": "flea",
+        "x": 1712,
+        "y": 3046,
+        "title": "Lost Flea",
+        "desc": ""
+    },
+    {
+        "id": "flea_2698_3240",
+        "type": "flea",
+        "x": 2698,
+        "y": 3240,
+        "title": "Lost Flea",
+        "desc": ""
+    },
+    {
+        "id": "flea_2830_3366",
+        "type": "flea",
+        "x": 2830,
+        "y": 3366,
+        "title": "Lost Flea",
+        "desc": ""
+    },
+    {
+        "id": "flea_3585_3781",
+        "type": "flea",
+        "x": 3585,
+        "y": 3781,
+        "title": "Lost Flea",
+        "desc": ""
+    },
+    {
+        "id": "flea_3904_3259",
+        "type": "flea",
+        "x": 3904,
+        "y": 3259,
+        "title": "Lost Flea",
+        "desc": ""
+    },
+    {
+        "id": "flea_4307_3449",
+        "type": "flea",
+        "x": 4307,
+        "y": 3449,
+        "title": "Lost Flea",
+        "desc": ""
+    },
+    {
+        "id": "flea_4892_3586",
+        "type": "flea",
+        "x": 4892,
+        "y": 3586,
+        "title": "Lost Flea",
+        "desc": ""
+    },
+    {
+        "id": "flea_5163_3117",
+        "type": "flea",
+        "x": 5163,
+        "y": 3117,
+        "title": "Lost Flea",
+        "desc": ""
+    },
+    {
+        "id": "flea_5005_2461",
+        "type": "flea",
+        "x": 5005,
+        "y": 2461,
+        "title": "Lost Flea",
+        "desc": ""
+    },
+    {
+        "id": "flea_4702_2228",
+        "type": "flea",
+        "x": 4702,
+        "y": 2228,
+        "title": "Lost Flea",
+        "desc": ""
+    },
+    {
+        "id": "flea_5064_1904",
+        "type": "flea",
+        "x": 5064,
+        "y": 1904,
+        "title": "Lost Flea",
+        "desc": ""
+    },
+    {
+        "id": "flea_4801_1304",
+        "type": "flea",
+        "x": 4801,
+        "y": 1304,
+        "title": "Lost Flea",
+        "desc": ""
+    },
+    {
+        "id": "flea_4282_1174",
+        "type": "flea",
+        "x": 4282,
+        "y": 1174,
+        "title": "Lost Flea",
+        "desc": ""
+    },
+    {
+        "id": "flea_4211_918",
+        "type": "flea",
+        "x": 4211,
+        "y": 918,
+        "title": "Lost Flea",
+        "desc": ""
+    },
+    {
+        "id": "flea_3059_1051",
+        "type": "flea",
+        "x": 3059,
+        "y": 1051,
+        "title": "Lost Flea",
+        "desc": ""
+    },
+    {
+        "id": "flea_3046_1399",
+        "type": "flea",
+        "x": 3046,
+        "y": 1399,
+        "title": "Lost Flea",
+        "desc": ""
+    },
+    {
+        "id": "flea_2114_1492",
+        "type": "flea",
+        "x": 2114,
+        "y": 1492,
+        "title": "Lost Flea",
+        "desc": ""
+    },
+    {
+        "id": "flea_1932_1764",
+        "type": "flea",
+        "x": 1932,
+        "y": 1764,
+        "title": "Lost Flea",
+        "desc": ""
+    },
+    {
+        "id": "flea_1087_1408",
+        "type": "flea",
+        "x": 1087,
+        "y": 1408,
+        "title": "Lost Flea",
+        "desc": ""
+    },
+    {
+        "id": "flea_2651_2028",
+        "type": "flea",
+        "x": 2651,
+        "y": 2028,
+        "title": "Lost Flea",
+        "desc": ""
+    },
+    {
+        "id": "flea_2670_2375",
+        "type": "flea",
+        "x": 2670,
+        "y": 2375,
+        "title": "Lost Flea",
+        "desc": ""
+    },
+    {
+        "id": "flea_3009_2400",
+        "type": "flea",
+        "x": 3009,
+        "y": 2400,
+        "title": "Lost Flea",
+        "desc": ""
+    },
+    {
+        "id": "flea_3924_2499",
+        "type": "flea",
+        "x": 3924,
+        "y": 2499,
+        "title": "Lost Flea",
+        "desc": ""
+    },
+    {
+        "id": "flea_4055_1985",
+        "type": "flea",
+        "x": 4055,
+        "y": 1985,
+        "title": "Lost Flea",
+        "desc": ""
+    },
+    {
+        "id": "flea_3320_1263",
+        "type": "flea",
+        "x": 3320,
+        "y": 1263,
+        "title": "Lost Flea",
+        "desc": ""
     }
 ];

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>HK Puzzle Solver</title>
+    <title>HK Map Final Fix</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
@@ -9,124 +9,97 @@
         body { margin: 0; background: #000; font-family: sans-serif; }
         #map { width: 100vw; height: 100vh; background: #0c0c0c; }
         
-        /* CONTROL PANEL */
-        .solver-panel {
+        .controls {
             position: absolute; top: 10px; right: 10px; z-index: 1000;
-            background: rgba(20, 20, 20, 0.9); padding: 15px;
-            color: white; border: 1px solid #444; width: 220px;
-            border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+            background: rgba(0,0,0,0.9); padding: 15px; width: 200px;
+            border: 1px solid #555; color: white; border-radius: 5px;
         }
-        .solver-panel h3 { margin: 0 0 10px 0; color: #FFD700; text-align: center; }
-        .btn-row { display: flex; justify-content: space-between; margin-bottom: 5px; }
         button {
-            background: #444; color: white; border: 1px solid #666;
-            padding: 8px; cursor: pointer; width: 48%; font-weight: bold;
+            display: block; width: 100%; padding: 10px; margin-bottom: 5px;
+            background: #333; color: #fff; border: 1px solid #666; cursor: pointer;
         }
-        button:hover { background: #666; }
+        button:hover { background: #555; }
         button.active { background: #28a745; border-color: #28a745; }
-        .readout { font-family: monospace; text-align: center; color: #aaa; margin-top: 10px; font-size: 12px;}
-        .highlight { color: #0f0; font-weight: bold; }
     </style>
 </head>
 <body>
 
     <div id="map"></div>
     
-    <div class="solver-panel">
-        <h3>🧩 Puzzle Solver</h3>
-        
-        <div style="text-align:center; margin-bottom:5px;">Vertical Shift (Y)</div>
-        <div class="btn-row">
-            <button onclick="shift(0, -1)">⬆️ Up</button>
-            <button onclick="shift(0, 1)">⬇️ Down</button>
-        </div>
-
-        <div style="text-align:center; margin-bottom:5px;">Horizontal Shift (X)</div>
-        <div class="btn-row">
-            <button onclick="shift(-1, 0)">⬅️ Left</button>
-            <button onclick="shift(1, 0)">➡️ Right</button>
-        </div>
-
-        <hr style="border-color:#444">
-        
-        <button onclick="toggleInv()" id="btn-inv" style="width:100%">🔄 Flip Y-Axis</button>
-        
-        <div class="readout">
-            Offset X: <span id="val-x" class="highlight">0</span><br>
-            Offset Y: <span id="val-y" class="highlight">0</span>
-        </div>
+    <div class="controls">
+        <strong>🔧 Configuration</strong><hr>
+        <button onclick="toggle('swap')" id="btn-swap">🔀 Swap X/Y Folders</button>
+        <button onclick="toggle('invert')" id="btn-inv">↕️ Invert Y Axis</button>
     </div>
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script>
-        // --- SETTINGS ---
         const TILE_SIZE = 256;
         
-        // --- STATE ---
-        let shiftX = 0;
-        let shiftY = 0;
-        let invertY = false; // Tries to fix upside-down maps
+        // STATE
+        let state = {
+            swapXY: false, // Check if folders are Z/Y/X instead of Z/X/Y
+            invertY: false // Check if Y needs flipping
+        };
 
-        // 1. SETUP MAP
+        // SETUP MAP
         const map = L.map('map', {
-            crs: L.CRS.Simple, // Flat world
+            crs: L.CRS.Simple,
             minZoom: 0,
             maxZoom: 9,
             zoomControl: false
         });
 
-        // 2. CUSTOM LAYER
-        const PuzzleLayer = L.TileLayer.extend({
+        // CUSTOM LAYER
+        const Layer = L.TileLayer.extend({
             getTileUrl: function(coords) {
                 let z = coords.z;
+                let x = coords.x;
+                let y = coords.y;
                 
-                // Apply Shifting
-                let x = coords.x + shiftX;
-                let y = coords.y + shiftY;
+                // 1. Handle Inversion (Leaflet is negative Y by default)
+                // We start by making it positive absolute
+                let finalY = Math.abs(y);
+                
+                // If "Invert" is active, we flip the counting direction
+                // (assuming typical TMS style relative to zoom)
+                if (state.invertY) {
+                    finalY = (Math.pow(2, z) - 1) - finalY;
+                }
 
-                // Handle Leaflet's Negative Y (Standard behavior for Simple CRS)
-                // If Leaflet wants Y = -5 (5 tiles down), we convert to positive 5.
-                let finalY = invertY ? (-y - 1) : Math.abs(y);
-
-                return `my_tiles/${z}/${x}/${finalY}.png`;
+                // 2. Handle Folder Structure
+                if (state.swapXY) {
+                    // Use Y for the folder, X for the file
+                    return `my_tiles/${z}/${finalY}/${x}.png`;
+                } else {
+                    // Standard: Use X for the folder, Y for the file
+                    return `my_tiles/${z}/${x}/${finalY}.png`;
+                }
             }
         });
 
-        let layer = new PuzzleLayer('', {
+        let tileLayer = new Layer('', {
             tileSize: TILE_SIZE,
             noWrap: true,
             bounds: [[-100000, -100000], [100000, 100000]],
-            errorTileUrl: '' // Hide broken tiles so they don't distract
+            errorTileUrl: '' 
         }).addTo(map);
 
-        // 3. VIEW
-        map.setView([-100, 100], 2);
+        // VIEW
+        map.setView([-100, 100], 4); // Start zoomed out to see the pattern
         L.control.zoom({ position: 'topleft' }).addTo(map);
 
-        // 4. LOGIC
-        function shift(x, y) {
-            shiftX += x;
-            shiftY += y;
-            updateUI();
+        // LOGIC
+        function toggle(mode) {
+            if(mode === 'swap') state.swapXY = !state.swapXY;
+            if(mode === 'invert') state.invertY = !state.invertY;
+            
+            // Update Buttons
+            document.getElementById('btn-swap').className = state.swapXY ? 'active' : '';
+            document.getElementById('btn-inv').className = state.invertY ? 'active' : '';
+            
+            tileLayer.redraw();
         }
-
-        function toggleInv() {
-            invertY = !invertY;
-            document.getElementById('btn-inv').className = invertY ? 'active' : '';
-            updateUI();
-        }
-
-        function updateUI() {
-            document.getElementById('val-x').innerText = shiftX;
-            document.getElementById('val-y').innerText = shiftY;
-            layer.redraw(); // Force map refresh
-        }
-
-        // Debug click
-        map.on('click', e => {
-            console.log("Clicked", e.latlng);
-        });
-
     </script>
 </body>
 </html>

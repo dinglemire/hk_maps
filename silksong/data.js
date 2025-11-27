@@ -1892,5 +1892,166 @@ const mapData = [
         "y": 1013,
         "title": "Drifter's Cloak",
         "desc": ""
+    },
+    //mask shard:
+    {
+        "id": "mask_1189_3513",
+        "type": "mask",
+        "x": 1189,
+        "y": 3513,
+        "title": "Mask Shard",
+        "desc": ""
+    },
+    {
+        "id": "mask_350_3218",
+        "type": "mask",
+        "x": 350,
+        "y": 3218,
+        "title": "Mask Shard",
+        "desc": ""
+    },
+    {
+        "id": "mask_1843_3519",
+        "type": "mask",
+        "x": 1843,
+        "y": 3519,
+        "title": "Mask Shard",
+        "desc": ""
+    },
+    {
+        "id": "mask_743_2114",
+        "type": "mask",
+        "x": 743,
+        "y": 2114,
+        "title": "Mask Shard",
+        "desc": ""
+    },
+    {
+        "id": "mask_949_1297",
+        "type": "mask",
+        "x": 949,
+        "y": 1297,
+        "title": "Mask Shard",
+        "desc": ""
+    },
+    {
+        "id": "mask_1538_1127",
+        "type": "mask",
+        "x": 1538,
+        "y": 1127,
+        "title": "Mask Shard",
+        "desc": ""
+    },
+    {
+        "id": "mask_2117_923",
+        "type": "mask",
+        "x": 2117,
+        "y": 923,
+        "title": "Mask Shard",
+        "desc": ""
+    },
+    {
+        "id": "mask_2192_1866",
+        "type": "mask",
+        "x": 2192,
+        "y": 1866,
+        "title": "Mask Shard",
+        "desc": ""
+    },
+    {
+        "id": "mask_2703_1772",
+        "type": "mask",
+        "x": 2703,
+        "y": 1772,
+        "title": "Mask Shard",
+        "desc": ""
+    },
+    {
+        "id": "mask_2588_1792",
+        "type": "mask",
+        "x": 2588,
+        "y": 1792,
+        "title": "Mask Shard",
+        "desc": ""
+    },
+    {
+        "id": "mask_2588_1779",
+        "type": "mask",
+        "x": 2588,
+        "y": 1779,
+        "title": "Mask Shard",
+        "desc": ""
+    },
+    {
+        "id": "mask_3048_1117",
+        "type": "mask",
+        "x": 3048,
+        "y": 1117,
+        "title": "Mask Shard",
+        "desc": ""
+    },
+    {
+        "id": "mask_5298_985",
+        "type": "mask",
+        "x": 5298,
+        "y": 985,
+        "title": "Mask Shard",
+        "desc": ""
+    },
+    {
+        "id": "mask_5683_1417",
+        "type": "mask",
+        "x": 5683,
+        "y": 1417,
+        "title": "Mask Shard",
+        "desc": ""
+    },
+    {
+        "id": "mask_4659_1033",
+        "type": "mask",
+        "x": 4659,
+        "y": 1033,
+        "title": "Mask Shard",
+        "desc": ""
+    },
+    {
+        "id": "mask_3816_2226",
+        "type": "mask",
+        "x": 3816,
+        "y": 2226,
+        "title": "Mask Shard",
+        "desc": ""
+    },
+    {
+        "id": "mask_4096_3140",
+        "type": "mask",
+        "x": 4096,
+        "y": 3140,
+        "title": "Mask Shard",
+        "desc": ""
+    },
+    {
+        "id": "mask_3944_3403",
+        "type": "mask",
+        "x": 3944,
+        "y": 3403,
+        "title": "Mask Shard",
+        "desc": ""
+    },
+    {
+        "id": "mask_2958_3314",
+        "type": "mask",
+        "x": 2958,
+        "y": 3314,
+        "title": "Mask Shard",
+        "desc": ""
+    },
+    {
+        "id": "mask_5432_2879",
+        "type": "mask",
+        "x": 5432,
+        "y": 2879,
+        "title": "Mask Shard",
+        "desc": ""
     }
 ];

@@ -1,39 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Hollow Knight Map Fixer</title>
+    <title>Hollow Knight Map</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <style>
-        body { margin: 0; background: #000; font-family: sans-serif; }
-        #map { width: 100vw; height: 100vh; background: #101010; }
+        body { margin: 0; background: #0c0c0c; font-family: sans-serif; }
+        #map { width: 100vw; height: 100vh; background: #0c0c0c; }
         
-        /* Fixer Panel Styling */
-        .fixer-panel {
-            background: rgba(30, 30, 30, 0.9);
-            padding: 15px;
-            border-radius: 8px;
-            box-shadow: 0 0 15px rgba(0,0,0,0.5);
+        /* Debug Control Styles */
+        .debug-panel {
+            background: rgba(0,0,0,0.8);
+            padding: 10px;
+            border-radius: 5px;
             color: white;
-            width: 250px;
+            border: 1px solid #444;
         }
-        .fixer-panel h3 { margin: 0 0 10px 0; font-size: 16px; color: #f1c40f; }
-        .fixer-btn {
-            display: block;
-            width: 100%;
-            padding: 8px;
-            margin-bottom: 5px;
-            background: #444;
-            border: 1px solid #555;
-            color: white;
-            cursor: pointer;
-            border-radius: 4px;
-            text-align: left;
+        .debug-btn {
+            background: #444; color: white; border: none; padding: 5px 10px;
+            cursor: pointer; margin-top: 5px; width: 100%;
         }
-        .fixer-btn:hover { background: #666; }
-        .fixer-btn.active { background: #2ecc71; border-color: #27ae60; color: #fff; }
-        .status-text { font-size: 12px; color: #aaa; margin-top: 5px; }
+        .debug-btn:hover { background: #666; }
     </style>
 </head>
 <body>
@@ -43,148 +31,112 @@
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script>
         // --- CONFIGURATION ---
-        const MAX_ZOOM = 9;
-        const TILE_SIZE = 256;
-        
-        // CENTER CALCULATION (Based on your provided file list)
-        // Zoom 9 center roughly at X=60, Y=150
-        const START_X = 60 * TILE_SIZE;
-        const START_Y = -150 * TILE_SIZE;
+        // Adjust this if you know your max folder number (you said 0 to 9)
+        const MAX_ZOOM = 9; 
+        const TILE_SIZE = 256; 
 
-        // --- STATE VARIABLES ---
-        // These change how we request the image files
-        let state = {
-            invertY: true,    // Flip Y axis (Standard for Leaflet vs FileSystem)
-            tms: false,       // Tile Map Service standard
-            offsetX: 0,       // Shift columns
-            offsetY: 0        // Shift rows
-        };
+        // State to handle the "vips" inverted levels
+        // VIPS default: 0 is the smallest (1x1 pixel), 9 is full size.
+        // Google/Leaflet default: 0 is 1 tile (256x256), higher is detailed.
+        let invertZoom = false; 
 
-        // 1. SETUP MAP
         const map = L.map('map', {
             crs: L.CRS.Simple,
             minZoom: 0,
             maxZoom: MAX_ZOOM,
-            zoomControl: false,
-            center: [START_Y, START_X], // Focusing on the content
-            zoom: 6 // Start zoomed out slightly so you can see the pattern
+            zoomControl: false, // We add it manually
+            center: [0, 0],
+            zoom: 2
         });
 
-        // 2. CUSTOM LAYER
-        // This creates the URL for every tile
-        const CustomLayer = L.TileLayer.extend({
+        // Custom TileLayer to handle the logic
+        const VipsLayer = L.TileLayer.extend({
             getTileUrl: function(coords) {
-                let x = coords.x + state.offsetX;
-                let y = coords.y + state.offsetY;
-                let z = coords.z;
-
-                // --- THE FIXER LOGIC ---
+                // Fix infinite scrolling wrapping
+                // If your map is black, vips might not have generated negative coordinates
+                // We assume Standard VIPS naming: z/x/y.png
                 
-                // Handle Y Axis flipping
-                if (state.invertY) {
-                    y = -y - 1; // Leaflet uses negative Y, Files use positive Y
+                let z = coords.z;
+                let x = coords.x;
+                let y = coords.y;
+
+                // 1. HANDLE ZOOM INVERSION
+                // If VIPS made folder '0' tiny and '9' huge, but Leaflet thinks '0' is huge:
+                if (invertZoom) {
+                    z = MAX_ZOOM - z;
                 }
 
-                // Handle TMS (Bottom-to-top)
-                if (state.tms) {
-                    y = (Math.pow(2, z) - 1) - y;
+                // 2. HANDLE Y-AXIS (Leaflet goes negative, Files are positive)
+                // VIPS usually saves "0" as the top row. Leaflet Simple CRS uses negative Y.
+                // We flip the sign.
+                // Also, vips dzsave sometimes uses "y" as positive down. 
+                // We'll try standard positive first.
+                // If coordinates are negative (Leaflet default for Simple), make them positive
+                // because files on disk don't have minus signs.
+                if (y < 0) {
+                   y = -y - 1; // Sometimes needed for TMS, but let's try absolute first:
+                   // y = Math.abs(y); 
                 }
 
+                // Return the URL
                 return `my_tiles/${z}/${x}/${y}.png`;
             }
         });
 
-        let tileLayer = new CustomLayer('', { 
+        let layer = new VipsLayer('', {
             tileSize: TILE_SIZE,
             noWrap: true,
             bounds: [[-100000, -100000], [100000, 100000]]
         }).addTo(map);
 
-        // 3. DEBUG CONTROLS
+
+        // --- CONTROLS ---
+
+        // 1. Zoom Control
         L.control.zoom({ position: 'topright' }).addTo(map);
 
-        const FixerControl = L.Control.extend({
-            onAdd: function() {
-                const div = L.DomUtil.create('div', 'fixer-panel leaflet-bar');
+        // 2. Debug/Fixer Control
+        const DebugControl = L.Control.extend({
+            onAdd: function(map) {
+                const div = L.DomUtil.create('div', 'debug-panel leaflet-bar');
                 div.innerHTML = `
-                    <h3>🧩 Map Puzzle Fixer</h3>
-                    
-                    <button class="fixer-btn active" id="btn-invert" onclick="toggleInvert()">
-                        ↕️ Invert Y-Axis (On)
-                    </button>
-                    
-                    <button class="fixer-btn" id="btn-tms" onclick="toggleTMS()">
-                        🔄 TMS Mode (Off)
-                    </button>
-                    
-                    <div style="display:flex; gap:5px;">
-                        <button class="fixer-btn" onclick="shift(0, -1)">⬆️</button>
-                        <button class="fixer-btn" onclick="shift(0, 1)">⬇️</button>
+                    <strong>🔧 Map Fixer</strong><br>
+                    <div id="status">Mode: Standard</div>
+                    <button class="debug-btn" onclick="toggleMode()">🔄 Toggle Zoom Order</button>
+                    <div style="font-size:0.8em; margin-top:5px; color:#aaa;">
+                        Trying to load:<br>
+                        <span id="url-preview">...</span>
                     </div>
-                     <div class="status-text">Shift Y (Row): <span id="val-y">0</span></div>
-
-                    <div style="display:flex; gap:5px;">
-                        <button class="fixer-btn" onclick="shift(-1, 0)">⬅️</button>
-                        <button class="fixer-btn" onclick="shift(1, 0)">➡️</button>
-                    </div>
-                    <div class="status-text">Shift X (Col): <span id="val-x">0</span></div>
-
-                    <hr style="border:0; border-top:1px solid #555;">
-                    <div class="status-text" id="url-debug">Hover map...</div>
                 `;
                 return div;
             }
         });
-        new FixerControl({ position: 'topright' }).addTo(map);
+        new DebugControl({ position: 'topright' }).addTo(map);
 
-        // --- ACTIONS ---
+        // --- LOGIC ---
         
-        function updateLayer() {
-            tileLayer.redraw();
-            updateUI();
+        function toggleMode() {
+            invertZoom = !invertZoom;
+            document.getElementById('status').innerText = invertZoom ? "Mode: Inverted (Vips)" : "Mode: Standard";
+            layer.redraw(); // Force reload tiles
         }
 
-        function toggleInvert() {
-            state.invertY = !state.invertY;
-            updateLayer();
-        }
+        // Debug: Listen for tile errors to help you diagnose
+        layer.on('tileerror', function(e) {
+            // Update the preview text with the URL that failed
+            const url = e.url;
+            // Shorten it for display
+            const shortUrl = url.split('hollowknight/')[1] || url;
+            document.getElementById('url-preview').innerText = shortUrl;
+        });
 
-        function toggleTMS() {
-            state.tms = !state.tms;
-            updateLayer();
-        }
-
-        function shift(dx, dy) {
-            state.offsetX += dx;
-            state.offsetY += dy;
-            updateLayer();
-        }
-
-        function updateUI() {
-            document.getElementById('btn-invert').className = state.invertY ? 'fixer-btn active' : 'fixer-btn';
-            document.getElementById('btn-invert').innerText = state.invertY ? '↕️ Invert Y (On)' : '↕️ Invert Y (Off)';
-            
-            document.getElementById('btn-tms').className = state.tms ? 'fixer-btn active' : 'fixer-btn';
-            document.getElementById('btn-tms').innerText = state.tms ? '🔄 TMS Mode (On)' : '🔄 TMS Mode (Off)';
-
-            document.getElementById('val-x').innerText = state.offsetX;
-            document.getElementById('val-y').innerText = state.offsetY;
-        }
-
-        // Debug text
-        map.on('mousemove', function(e) {
-            const z = map.getZoom();
-            let x = Math.floor(e.latlng.lng / TILE_SIZE);
-            let y = Math.floor(-e.latlng.lat / TILE_SIZE); // Leaflet native
-            
-            // Calculate what the script is actually requesting
-            let reqX = x + state.offsetX;
-            let reqY = y + state.offsetY;
-            if(state.invertY) reqY = -reqY - 1;
-            if(state.tms) reqY = (Math.pow(2, z) - 1) - reqY;
-
-            document.getElementById('url-debug').innerText = 
-                `Req: my_tiles/${z}/${reqX}/${reqY}.png`;
+        // Debug: Click map to see coordinates
+        map.on('click', function(e) {
+            console.log(e.latlng);
+            L.popup()
+                .setLatLng(e.latlng)
+                .setContent(`Lat (Y): ${Math.round(e.latlng.lat)}<br>Lng (X): ${Math.round(e.latlng.lng)}`)
+                .openOn(map);
         });
 
     </script>

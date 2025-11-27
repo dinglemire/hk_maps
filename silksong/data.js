@@ -2882,5 +2882,54 @@ const mapData = [
         "y": 1517,
         "title": "Curveclaw",
         "desc": ""
+    },
+    //skill:
+    {
+        "id": "skill_134_1397",
+        "type": "skill",
+        "x": 134,
+        "y": 1397,
+        "title": "Sharpdart",
+        "desc": ""
+    },
+    {
+        "id": "skill_1563_1445",
+        "type": "skill",
+        "x": 1563,
+        "y": 1445,
+        "title": "Silkspear",
+        "desc": ""
+    },
+    {
+        "id": "skill_4963_2135",
+        "type": "skill",
+        "x": 4963,
+        "y": 2135,
+        "title": "Thread Storm",
+        "desc": ""
+    },
+    {
+        "id": "skill_4085_2489",
+        "type": "skill",
+        "x": 4085,
+        "y": 2489,
+        "title": "Cross Stitch",
+        "desc": ""
+    },
+    {
+        "id": "skill_3228_4371",
+        "type": "skill",
+        "x": 3228,
+        "y": 4371,
+        "title": "Pale Nails",
+        "desc": ""
+    },
+    {
+        "id": "skill_1949_2987",
+        "type": "skill",
+        "x": 1949,
+        "y": 2987,
+        "title": "Rune Rage",
+        "desc": ""
     }
 ];

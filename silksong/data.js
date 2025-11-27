@@ -2931,5 +2931,390 @@ const mapData = [
         "y": 2987,
         "title": "Rune Rage",
         "desc": ""
+    },
+    //Wish:
+    {
+        "id": "wish_769_1541",
+        "type": "wish",
+        "x": 769,
+        "y": 1541,
+        "title": "Alchemist's Assistant",
+        "desc": ""
+    },
+    {
+        "id": "wish_769_1561",
+        "type": "wish",
+        "x": 769,
+        "y": 1561,
+        "title": "Advanced Alchemy",
+        "desc": ""
+    },
+    {
+        "id": "wish_1570_1091",
+        "type": "wish",
+        "x": 1570,
+        "y": 1091,
+        "title": "Bone Bottom Repairs",
+        "desc": ""
+    },
+    {
+        "id": "wish_1570_1106",
+        "type": "wish",
+        "x": 1570,
+        "y": 1106,
+        "title": "Garb of the Pilgrims",
+        "desc": ""
+    },
+    {
+        "id": "wish_1570_1120",
+        "type": "wish",
+        "x": 1570,
+        "y": 1120,
+        "title": "A Lifesaving Bridge",
+        "desc": ""
+    },
+    {
+        "id": "wish_1570_1136",
+        "type": "wish",
+        "x": 1570,
+        "y": 1136,
+        "title": "Volatile Flintbeetles",
+        "desc": ""
+    },
+    {
+        "id": "wish_1570_1149",
+        "type": "wish",
+        "x": 1570,
+        "y": 1149,
+        "title": "The Terrible Tyrant",
+        "desc": ""
+    },
+    {
+        "id": "wish_1561_1154",
+        "type": "wish",
+        "x": 1561,
+        "y": 1154,
+        "title": "An Icon of Hope",
+        "desc": ""
+    },
+    {
+        "id": "wish_1800_1420",
+        "type": "wish",
+        "x": 1800,
+        "y": 1420,
+        "title": "Berry Picking",
+        "desc": ""
+    },
+    {
+        "id": "wish_2058_1787",
+        "type": "wish",
+        "x": 2058,
+        "y": 1787,
+        "title": "Rite of the Pollip",
+        "desc": ""
+    },
+    {
+        "id": "wish_2042_1788",
+        "type": "wish",
+        "x": 2042,
+        "y": 1788,
+        "title": "Rite of Rebirth",
+        "desc": ""
+    },
+    {
+        "id": "wish_2265_1212",
+        "type": "wish",
+        "x": 2265,
+        "y": 1212,
+        "title": "The Lost Fleas",
+        "desc": ""
+    },
+    {
+        "id": "wish_2599_1704",
+        "type": "wish",
+        "x": 2599,
+        "y": 1704,
+        "title": "Falat Resolve",
+        "desc": ""
+    },
+    {
+        "id": "wish_2599_1716",
+        "type": "wish",
+        "x": 2599,
+        "y": 1716,
+        "title": "Ecstasy of the End",
+        "desc": ""
+    },
+    {
+        "id": "wish_2599_1727",
+        "type": "wish",
+        "x": 2599,
+        "y": 1727,
+        "title": "Heroe's Call",
+        "desc": ""
+    },
+    {
+        "id": "wish_2599_1739",
+        "type": "wish",
+        "x": 2599,
+        "y": 1739,
+        "title": "The Hidden Hunter",
+        "desc": ""
+    },
+    {
+        "id": "wish_2599_1750",
+        "type": "wish",
+        "x": 2599,
+        "y": 1750,
+        "title": "Dark Hearts",
+        "desc": ""
+    },
+    {
+        "id": "wish_2692_1660",
+        "type": "wish",
+        "x": 2692,
+        "y": 1660,
+        "title": "Silver Bells",
+        "desc": ""
+    },
+    {
+        "id": "wish_2692_1671",
+        "type": "wish",
+        "x": 2692,
+        "y": 1671,
+        "title": "My Missing Courier",
+        "desc": ""
+    },
+    {
+        "id": "wish_2692_1682",
+        "type": "wish",
+        "x": 2692,
+        "y": 1682,
+        "title": "Crawbug Clearing",
+        "desc": ""
+    },
+    {
+        "id": "wish_2692_1693",
+        "type": "wish",
+        "x": 2692,
+        "y": 1693,
+        "title": "Restoration of bellhart",
+        "desc": ""
+    },
+    {
+        "id": "wish_2692_1704",
+        "type": "wish",
+        "x": 2692,
+        "y": 1704,
+        "title": "Bellhart's Glory",
+        "desc": ""
+    },
+    {
+        "id": "wish_2692_1715",
+        "type": "wish",
+        "x": 2692,
+        "y": 1715,
+        "title": "My Missing Brother",
+        "desc": ""
+    },
+    {
+        "id": "wish_2692_1726",
+        "type": "wish",
+        "x": 2692,
+        "y": 1726,
+        "title": "Savage Beastfly",
+        "desc": ""
+    },
+    {
+        "id": "wish_2692_1737",
+        "type": "wish",
+        "x": 2692,
+        "y": 1737,
+        "title": "Trail's End",
+        "desc": ""
+    },
+    {
+        "id": "wish_2725_1730",
+        "type": "wish",
+        "x": 2725,
+        "y": 1730,
+        "title": "Queen's Egg",
+        "desc": ""
+    },
+    {
+        "id": "wish_2731_1733",
+        "type": "wish",
+        "x": 2731,
+        "y": 1733,
+        "title": "Liquid Lacquer",
+        "desc": ""
+    },
+    {
+        "id": "wish_2785_1746",
+        "type": "wish",
+        "x": 2785,
+        "y": 1746,
+        "title": "Pinmaster's Oil",
+        "desc": ""
+    },
+    {
+        "id": "wish_3002_1939",
+        "type": "wish",
+        "x": 3002,
+        "y": 1939,
+        "title": "Infestation Operation",
+        "desc": ""
+    },
+    {
+        "id": "wish_3063_3208",
+        "type": "wish",
+        "x": 3063,
+        "y": 3208,
+        "title": "Great Taste of Pharloom",
+        "desc": ""
+    },
+    {
+        "id": "wish_3913_3388",
+        "type": "wish",
+        "x": 3913,
+        "y": 3388,
+        "title": "Silks and Soul",
+        "desc": ""
+    },
+    {
+        "id": "wish_3913_3400",
+        "type": "wish",
+        "x": 3913,
+        "y": 3400,
+        "title": "Pain, Anguish and Misery",
+        "desc": ""
+    },
+    {
+        "id": "wish_3989_3370",
+        "type": "wish",
+        "x": 3989,
+        "y": 3370,
+        "title": "Building Up Songclave",
+        "desc": ""
+    },
+    {
+        "id": "wish_3989_3381",
+        "type": "wish",
+        "x": 3989,
+        "y": 3381,
+        "title": "Fine Pins",
+        "desc": ""
+    },
+    {
+        "id": "wish_3989_3392",
+        "type": "wish",
+        "x": 3989,
+        "y": 3392,
+        "title": "The Wandering Merchant",
+        "desc": ""
+    },
+    {
+        "id": "wish_3989_3404",
+        "type": "wish",
+        "x": 3989,
+        "y": 3404,
+        "title": "Balm for The Wounded",
+        "desc": ""
+    },
+    {
+        "id": "wish_3989_3416",
+        "type": "wish",
+        "x": 3989,
+        "y": 3416,
+        "title": "Cloaks of the Choir",
+        "desc": ""
+    },
+    {
+        "id": "wish_3989_3428",
+        "type": "wish",
+        "x": 3989,
+        "y": 3428,
+        "title": "Strengthening Songclave",
+        "desc": ""
+    },
+    {
+        "id": "wish_4030_3406",
+        "type": "wish",
+        "x": 4030,
+        "y": 3406,
+        "title": "The Lost Merchant",
+        "desc": ""
+    },
+    {
+        "id": "wish_4030_3418",
+        "type": "wish",
+        "x": 4030,
+        "y": 3418,
+        "title": "Final Audience",
+        "desc": ""
+    },
+    {
+        "id": "wish_4030_3431",
+        "type": "wish",
+        "x": 4030,
+        "y": 3431,
+        "title": "The Wailing Mother",
+        "desc": ""
+    },
+    {
+        "id": "wish_4590_3316",
+        "type": "wish",
+        "x": 4590,
+        "y": 3316,
+        "title": "Broodfeast",
+        "desc": ""
+    },
+    {
+        "id": "wish_4396_2245",
+        "type": "wish",
+        "x": 4396,
+        "y": 2245,
+        "title": "Roach Guts",
+        "desc": ""
+    },
+    {
+        "id": "wish_5782_3476",
+        "type": "wish",
+        "x": 5782,
+        "y": 3476,
+        "title": "Passing of the Age",
+        "desc": ""
+    },
+    {
+        "id": "wish_5687_1399",
+        "type": "wish",
+        "x": 5687,
+        "y": 1399,
+        "title": "Fastest in Pharloom",
+        "desc": ""
+    },
+    {
+        "id": "wish_4849_992",
+        "type": "wish",
+        "x": 4849,
+        "y": 992,
+        "title": "Flexile Spines",
+        "desc": ""
+    },
+    {
+        "id": "wish_3776_1879",
+        "type": "wish",
+        "x": 3776,
+        "y": 1879,
+        "title": "Bugs of Pharloom",
+        "desc": ""
+    },
+    {
+        "id": "wish_1685_2169",
+        "type": "wish",
+        "x": 1685,
+        "y": 2169,
+        "title": "A Vassal Lost",
+        "desc": ""
     }
 ];

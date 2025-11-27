@@ -1787,5 +1787,21 @@ const mapData = [
         "y": 3352,
         "title": "Key of Apostate",
         "desc": ""
+    },
+    {
+        "id": "key_3357_2877",
+        "type": "key",
+        "x": 3357,
+        "y": 2877,
+        "title": "Surgeon's Key",
+        "desc": ""
+    },
+    {
+        "id": "key_3335_2611",
+        "type": "key",
+        "x": 3335,
+        "y": 2611,
+        "title": "Architect's Key",
+        "desc": ""
     }
 ];

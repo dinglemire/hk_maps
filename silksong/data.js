@@ -2223,5 +2223,166 @@ const mapData = [
         "y": 3934,
         "title": "Spool Fragment",
         "desc": ""
+    },
+    //memory locket
+    {
+        "id": "memory_614_2562",
+        "type": "memory",
+        "x": 614,
+        "y": 2562,
+        "title": "Memory Locket",
+        "desc": ""
+    },
+    {
+        "id": "memory_1182_2067",
+        "type": "memory",
+        "x": 1182,
+        "y": 2067,
+        "title": "Memory Locket",
+        "desc": ""
+    },
+    {
+        "id": "memory_695_1228",
+        "type": "memory",
+        "x": 695,
+        "y": 1228,
+        "title": "Memory Locket",
+        "desc": ""
+    },
+    {
+        "id": "memory_1578_1147",
+        "type": "memory",
+        "x": 1578,
+        "y": 1147,
+        "title": "Memory Locket",
+        "desc": ""
+    },
+    {
+        "id": "memory_2237_1481",
+        "type": "memory",
+        "x": 2237,
+        "y": 1481,
+        "title": "Memory Locket",
+        "desc": ""
+    },
+    {
+        "id": "memory_3353_611",
+        "type": "memory",
+        "x": 3353,
+        "y": 611,
+        "title": "Memory Locket",
+        "desc": ""
+    },
+    {
+        "id": "memory_4122_1342",
+        "type": "memory",
+        "x": 4122,
+        "y": 1342,
+        "title": "Memory Locket",
+        "desc": ""
+    },
+    {
+        "id": "memory_4597_1316",
+        "type": "memory",
+        "x": 4597,
+        "y": 1316,
+        "title": "Memory Locket",
+        "desc": ""
+    },
+    {
+        "id": "memory_5331_1525",
+        "type": "memory",
+        "x": 5331,
+        "y": 1525,
+        "title": "Memory Locket",
+        "desc": ""
+    },
+    {
+        "id": "memory_3753_1860",
+        "type": "memory",
+        "x": 3753,
+        "y": 1860,
+        "title": "Memory Locket",
+        "desc": ""
+    },
+    {
+        "id": "memory_3528_1715",
+        "type": "memory",
+        "x": 3528,
+        "y": 1715,
+        "title": "Memory Locket",
+        "desc": ""
+    },
+    {
+        "id": "memory_2748_2605",
+        "type": "memory",
+        "x": 2748,
+        "y": 2605,
+        "title": "Memory Locket",
+        "desc": ""
+    },
+    {
+        "id": "memory_3720_2959",
+        "type": "memory",
+        "x": 3720,
+        "y": 2959,
+        "title": "Memory Locket",
+        "desc": ""
+    },
+    {
+        "id": "memory_3538_3587",
+        "type": "memory",
+        "x": 3538,
+        "y": 3587,
+        "title": "Memory Locket",
+        "desc": ""
+    },
+    {
+        "id": "memory_4266_3219",
+        "type": "memory",
+        "x": 4266,
+        "y": 3219,
+        "title": "Memory Locket",
+        "desc": ""
+    },
+    {
+        "id": "memory_5228_2944",
+        "type": "memory",
+        "x": 5228,
+        "y": 2944,
+        "title": "Memory Locket",
+        "desc": ""
+    },
+    {
+        "id": "memory_1841_3126",
+        "type": "memory",
+        "x": 1841,
+        "y": 3126,
+        "title": "Memory Locket",
+        "desc": ""
+    },
+    {
+        "id": "memory_4159_2650",
+        "type": "memory",
+        "x": 4159,
+        "y": 2650,
+        "title": "Memory Locket",
+        "desc": ""
+    },
+    {
+        "id": "memory_2717_1685",
+        "type": "memory",
+        "x": 2717,
+        "y": 1685,
+        "title": "Memory Locket",
+        "desc": ""
+    },
+    {
+        "id": "memory_2765_1765",
+        "type": "memory",
+        "x": 2765,
+        "y": 1765,
+        "title": "Memory Locket",
+        "desc": ""
     }
 ];

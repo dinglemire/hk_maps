@@ -3178,7 +3178,7 @@ const mapData = [
         "type": "wish",
         "x": 3913,
         "y": 3388,
-        "title": "Silks and Soul",
+        "title": "Silk and Soul",
         "desc": ""
     },
     {

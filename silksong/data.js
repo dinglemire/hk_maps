@@ -1634,5 +1634,158 @@ const mapData = [
         "y": 3192,
         "title": "Groat The Great",
         "desc": ""
+    },
+    //boss
+    {
+        "id": "key_1579_3423",
+        "type": "key",
+        "x": 1579,
+        "y": 3423,
+        "title": "Key of Heretic",
+        "desc": ""
+    },
+    {
+        "id": "key_1548_3276",
+        "type": "key",
+        "x": 1548,
+        "y": 3276,
+        "title": "Key of Indolent",
+        "desc": ""
+    },
+    {
+        "id": "key_1796_2719",
+        "type": "key",
+        "x": 1796,
+        "y": 2719,
+        "title": "Simple Key",
+        "desc": ""
+    },
+    {
+        "id": "key_542_1392",
+        "type": "key",
+        "x": 542,
+        "y": 1392,
+        "title": "Needolin Gate",
+        "desc": ""
+    },
+    {
+        "id": "key_897_1330",
+        "type": "key",
+        "x": 897,
+        "y": 1330,
+        "title": "Simple Gate",
+        "desc": ""
+    },
+    {
+        "id": "key_1534_1104",
+        "type": "key",
+        "x": 1534,
+        "y": 1104,
+        "title": "Simple Key",
+        "desc": ""
+    },
+    {
+        "id": "key_1515_954",
+        "type": "key",
+        "x": 1515,
+        "y": 954,
+        "title": "Needolin Gate",
+        "desc": ""
+    },
+    {
+        "id": "key_2888_3481",
+        "type": "key",
+        "x": 2888,
+        "y": 3481,
+        "title": "Simple Gate",
+        "desc": ""
+    },
+    {
+        "id": "key_3961_3388",
+        "type": "key",
+        "x": 3961,
+        "y": 3388,
+        "title": "Simple Key",
+        "desc": ""
+    },
+    {
+        "id": "key_4002_3374",
+        "type": "key",
+        "x": 4002,
+        "y": 3374,
+        "title": "White Key",
+        "desc": ""
+    },
+    {
+        "id": "key_4614_2455",
+        "type": "key",
+        "x": 4614,
+        "y": 2455,
+        "title": "Simple Key",
+        "desc": ""
+    },
+    {
+        "id": "key_4216_2057",
+        "type": "key",
+        "x": 4216,
+        "y": 2057,
+        "title": "Simple Gate",
+        "desc": ""
+    },
+    {
+        "id": "key_5337_2361",
+        "type": "key",
+        "x": 5337,
+        "y": 2361,
+        "title": "Needolin Gate",
+        "desc": ""
+    },
+    {
+        "id": "key_5514_929",
+        "type": "key",
+        "x": 5514,
+        "y": 929,
+        "title": "Needolin Gate",
+        "desc": ""
+    },
+    {
+        "id": "key_3602_948",
+        "type": "key",
+        "x": 3602,
+        "y": 948,
+        "title": "Simple Gate",
+        "desc": ""
+    },
+    {
+        "id": "key_3794_721",
+        "type": "key",
+        "x": 3794,
+        "y": 721,
+        "title": "Diving Bell Key",
+        "desc": ""
+    },
+    {
+        "id": "key_3477_186",
+        "type": "key",
+        "x": 3477,
+        "y": 186,
+        "title": "Needolin Gate",
+        "desc": ""
+    },
+    {
+        "id": "key_2708_1669",
+        "type": "key",
+        "x": 2708,
+        "y": 1669,
+        "title": "Bellhome Key",
+        "desc": ""
+    },
+    {
+        "id": "key_4445_3352",
+        "type": "key",
+        "x": 4445,
+        "y": 3352,
+        "title": "Key of Apostate",
+        "desc": ""
     }
 ];

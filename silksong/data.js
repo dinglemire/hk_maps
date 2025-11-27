@@ -1032,5 +1032,238 @@ const mapData = [
         "y": 2179,
         "title": "Shakra - Sinner's Road",
         "desc": ""
+    },
+    //AREA MAP:
+    {
+        "id": "map_1296_3019",
+        "type": "map",
+        "x": 1296,
+        "y": 3019,
+        "title": "Mount Fay Map",
+        "desc": ""
+    },
+    {
+        "id": "map_1959_3282",
+        "type": "map",
+        "x": 1959,
+        "y": 3282,
+        "title": "Slab Map",
+        "desc": ""
+    },
+    {
+        "id": "map_956_2672",
+        "type": "map",
+        "x": 956,
+        "y": 2672,
+        "title": "Sands of Karak Map",
+        "desc": ""
+    },
+    {
+        "id": "map_1000_1488",
+        "type": "map",
+        "x": 1000,
+        "y": 1488,
+        "title": "Wormways Map",
+        "desc": ""
+    },
+    {
+        "id": "map_1837_954",
+        "type": "map",
+        "x": 1837,
+        "y": 954,
+        "title": "Weavenest Atla Map",
+        "desc": ""
+    },
+    {
+        "id": "map_1693_1302",
+        "type": "map",
+        "x": 1693,
+        "y": 1302,
+        "title": "The Marrow Map",
+        "desc": ""
+    },
+    {
+        "id": "map_1711_1303",
+        "type": "map",
+        "x": 1711,
+        "y": 1303,
+        "title": "Mosslands Map",
+        "desc": ""
+    },
+    {
+        "id": "map_2075_1689",
+        "type": "map",
+        "x": 2075,
+        "y": 1689,
+        "title": "Shellwood Map",
+        "desc": ""
+    },
+    {
+        "id": "map_1477_2097",
+        "type": "map",
+        "x": 1477,
+        "y": 2097,
+        "title": "Blasted Steps Map",
+        "desc": ""
+    },
+    {
+        "id": "map_2077_2530",
+        "type": "map",
+        "x": 2077,
+        "y": 2530,
+        "title": "Grand Gate Map",
+        "desc": ""
+    },
+    {
+        "id": "map_2342_2479",
+        "type": "map",
+        "x": 2342,
+        "y": 2479,
+        "title": "Underworks Map",
+        "desc": ""
+    },
+    {
+        "id": "map_2459_2941",
+        "type": "map",
+        "x": 2459,
+        "y": 2941,
+        "title": "Choral Chambers Map",
+        "desc": ""
+    },
+    {
+        "id": "map_3118_3459",
+        "type": "map",
+        "x": 3118,
+        "y": 3459,
+        "title": "High Halls Map",
+        "desc": ""
+    },
+    {
+        "id": "map_3189_3369",
+        "type": "map",
+        "x": 3189,
+        "y": 3369,
+        "title": "Cogwork Core Map",
+        "desc": ""
+    },
+    {
+        "id": "map_3092_4150",
+        "type": "map",
+        "x": 3092,
+        "y": 4150,
+        "title": "The Cradle Map",
+        "desc": ""
+    },
+    {
+        "id": "map_3864_3478",
+        "type": "map",
+        "x": 3864,
+        "y": 3478,
+        "title": "Memorium Map",
+        "desc": ""
+    },
+    {
+        "id": "map_3958_3327",
+        "type": "map",
+        "x": 3958,
+        "y": 3327,
+        "title": "Whispering Vaults Map",
+        "desc": ""
+    },
+    {
+        "id": "map_3767_2928",
+        "type": "map",
+        "x": 3767,
+        "y": 2928,
+        "title": "Choral Chambers Map",
+        "desc": ""
+    },
+    {
+        "id": "map_4731_3434",
+        "type": "map",
+        "x": 4731,
+        "y": 3434,
+        "title": "Putrified Ducts Map",
+        "desc": ""
+    },
+    {
+        "id": "map_4862_2633",
+        "type": "map",
+        "x": 4862,
+        "y": 2633,
+        "title": "Bilewater Map",
+        "desc": ""
+    },
+    {
+        "id": "map_5757_1862",
+        "type": "map",
+        "x": 5757,
+        "y": 1862,
+        "title": "Verdania Map",
+        "desc": ""
+    },
+    {
+        "id": "map_4642_1818",
+        "type": "map",
+        "x": 4642,
+        "y": 1818,
+        "title": "Greymoor Map",
+        "desc": ""
+    },
+    {
+        "id": "map_4475_1045",
+        "type": "map",
+        "x": 4475,
+        "y": 1045,
+        "title": "Far Fields Map",
+        "desc": ""
+    },
+    {
+        "id": "map_4003_1334",
+        "type": "map",
+        "x": 4003,
+        "y": 1334,
+        "title": "Hunter's March Map",
+        "desc": ""
+    },
+    {
+        "id": "map_3305_1059",
+        "type": "map",
+        "x": 3305,
+        "y": 1059,
+        "title": "Deep Docks Map",
+        "desc": ""
+    },
+    {
+        "id": "map_3112_58",
+        "type": "map",
+        "x": 3112,
+        "y": 58,
+        "title": "The Abyss Map",
+        "desc": ""
+    },
+    {
+        "id": "map_4083_2198",
+        "type": "map",
+        "x": 4083,
+        "y": 2198,
+        "title": "Sinner's Road Map",
+        "desc": ""
+    },
+    {
+        "id": "map_3064_2804",
+        "type": "map",
+        "x": 3064,
+        "y": 2804,
+        "title": "Whiteward Map",
+        "desc": ""
+    },
+    {
+        "id": "map_2842_1706",
+        "type": "map",
+        "x": 2842,
+        "y": 1706,
+        "title": "Bellhart Map",
+        "desc": ""
     }
 ];

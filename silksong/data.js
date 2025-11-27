@@ -790,5 +790,62 @@ const mapData = [
         "y": 1741,
         "title": "Bellway - Greymoor",
         "desc": ""
+    };
+    //Ventrica::
+    {
+        "id": "ventrica_3411_4016",
+        "type": "ventrica",
+        "x": 3411,
+        "y": 4016,
+        "title": "Ventrica Station - Terminus",
+        "desc": ""
+    },
+    {
+        "id": "ventrica_3429_3690",
+        "type": "ventrica",
+        "x": 3429,
+        "y": 3690,
+        "title": "Ventrica Station - Memorium",
+        "desc": ""
+    },
+    {
+        "id": "ventrica_3083_3462",
+        "type": "ventrica",
+        "x": 3083,
+        "y": 3462,
+        "title": "Ventrica Station - High Halls",
+        "desc": ""
+    },
+    {
+        "id": "ventrica_3836_3438",
+        "type": "ventrica",
+        "x": 3836,
+        "y": 3438,
+        "title": "Ventrica Station - First Shrine",
+        "desc": ""
+    },
+    {
+        "id": "ventrica_3735_2926",
+        "type": "ventrica",
+        "x": 3735,
+        "y": 2926,
+        "title": "Ventrica Station - Grand Bellway",
+        "desc": ""
+    },
+    {
+        "id": "ventrica_2329_2937",
+        "type": "ventrica",
+        "x": 2329,
+        "y": 2937,
+        "title": "Ventrica Station - Choral Chambers",
+        "desc": ""
+    },
+    {
+        "id": "ventrica_3110_2519",
+        "type": "ventrica",
+        "x": 3110,
+        "y": 2519,
+        "title": "Ventrica Station - Underworks",
+        "desc": ""
     }
 ];

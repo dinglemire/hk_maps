@@ -1,72 +1,141 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
+    <title>Hollow Knight Map</title>
+    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hollow Knight Interactive Map</title>
-    
-    <!-- Leaflet CSS (The library that handles the map logic) -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" 
-          integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" 
-          crossorigin=""/>
-
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <style>
-        /* Make the map full screen */
-        body, html { margin: 0; padding: 0; height: 100%; background-color: #0c0c0c; }
-        #map { width: 100%; height: 100vh; background: #0c0c0c; }
+        body { margin: 0; background: #0c0c0c; font-family: sans-serif; }
+        #map { width: 100vw; height: 100vh; background: #0c0c0c; }
         
-        /* Optional: Custom style for the Zoom controls to look more "Hollow Knight" */
-        .leaflet-bar a { background-color: #2b2b2b; color: #d3d3d3; border-color: #444; }
-        .leaflet-bar a:hover { background-color: #444; }
+        /* Debug Control Styles */
+        .debug-panel {
+            background: rgba(0,0,0,0.8);
+            padding: 10px;
+            border-radius: 5px;
+            color: white;
+            border: 1px solid #444;
+        }
+        .debug-btn {
+            background: #444; color: white; border: none; padding: 5px 10px;
+            cursor: pointer; margin-top: 5px; width: 100%;
+        }
+        .debug-btn:hover { background: #666; }
     </style>
 </head>
 <body>
 
     <div id="map"></div>
 
-    <!-- Leaflet JS -->
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" 
-            integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" 
-            crossorigin=""></script>
-
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script>
-        // 1. SETUP THE MAP
-        // L.CRS.Simple is used for flat maps (games), not Earth maps.
+        // --- CONFIGURATION ---
+        // Adjust this if you know your max folder number (you said 0 to 9)
+        const MAX_ZOOM = 9; 
+        const TILE_SIZE = 256; 
+
+        // State to handle the "vips" inverted levels
+        // VIPS default: 0 is the smallest (1x1 pixel), 9 is full size.
+        // Google/Leaflet default: 0 is 1 tile (256x256), higher is detailed.
+        let invertZoom = false; 
+
         const map = L.map('map', {
             crs: L.CRS.Simple,
             minZoom: 0,
-            maxZoom: 9,   // Matches your folder structure (0 to 9)
-            zoomControl: false // We add it back manually to position it better if needed
+            maxZoom: MAX_ZOOM,
+            zoomControl: false, // We add it manually
+            center: [0, 0],
+            zoom: 2
         });
 
-        // 2. DEFINE THE MAP BOUNDS
-        // This prevents the user from dragging the map too far into the void.
-        // We estimate size based on zoom level 9 (approx 256 * 2^9 pixels)
-        const mapSize = 256 * Math.pow(2, 9); 
-        const mapBounds = [[0, 0], [-mapSize, mapSize]]; // Leaflet uses negative Y for simple maps sometimes
-        
-        // 3. THE "GLUE" - TILE LAYER
-        // This tells Leaflet where to find your 25,555 files.
-        L.tileLayer('my_tiles/{z}/{x}/{y}.png', {
-            tileSize: 256,
+        // Custom TileLayer to handle the logic
+        const VipsLayer = L.TileLayer.extend({
+            getTileUrl: function(coords) {
+                // Fix infinite scrolling wrapping
+                // If your map is black, vips might not have generated negative coordinates
+                // We assume Standard VIPS naming: z/x/y.png
+                
+                let z = coords.z;
+                let x = coords.x;
+                let y = coords.y;
+
+                // 1. HANDLE ZOOM INVERSION
+                // If VIPS made folder '0' tiny and '9' huge, but Leaflet thinks '0' is huge:
+                if (invertZoom) {
+                    z = MAX_ZOOM - z;
+                }
+
+                // 2. HANDLE Y-AXIS (Leaflet goes negative, Files are positive)
+                // VIPS usually saves "0" as the top row. Leaflet Simple CRS uses negative Y.
+                // We flip the sign.
+                // Also, vips dzsave sometimes uses "y" as positive down. 
+                // We'll try standard positive first.
+                // If coordinates are negative (Leaflet default for Simple), make them positive
+                // because files on disk don't have minus signs.
+                if (y < 0) {
+                   y = -y - 1; // Sometimes needed for TMS, but let's try absolute first:
+                   // y = Math.abs(y); 
+                }
+
+                // Return the URL
+                return `my_tiles/${z}/${x}/${y}.png`;
+            }
+        });
+
+        let layer = new VipsLayer('', {
+            tileSize: TILE_SIZE,
             noWrap: true,
-            attribution: 'Team Cherry | Map by You',
-            errorTileUrl: 'my_tiles/blank.png' // Use your blank.png if a tile is missing
+            bounds: [[-100000, -100000], [100000, 100000]]
         }).addTo(map);
 
-        // 4. SET INITIAL VIEW
-        // Centers the map roughly in the middle
-        map.setView([-mapSize/2, mapSize/2], 2);
 
-        // 5. ADD CONTROLS
+        // --- CONTROLS ---
+
+        // 1. Zoom Control
         L.control.zoom({ position: 'topright' }).addTo(map);
 
-        // 6. DEBUG MODE (Click to see coordinates for your future icons)
+        // 2. Debug/Fixer Control
+        const DebugControl = L.Control.extend({
+            onAdd: function(map) {
+                const div = L.DomUtil.create('div', 'debug-panel leaflet-bar');
+                div.innerHTML = `
+                    <strong>🔧 Map Fixer</strong><br>
+                    <div id="status">Mode: Standard</div>
+                    <button class="debug-btn" onclick="toggleMode()">🔄 Toggle Zoom Order</button>
+                    <div style="font-size:0.8em; margin-top:5px; color:#aaa;">
+                        Trying to load:<br>
+                        <span id="url-preview">...</span>
+                    </div>
+                `;
+                return div;
+            }
+        });
+        new DebugControl({ position: 'topright' }).addTo(map);
+
+        // --- LOGIC ---
+        
+        function toggleMode() {
+            invertZoom = !invertZoom;
+            document.getElementById('status').innerText = invertZoom ? "Mode: Inverted (Vips)" : "Mode: Standard";
+            layer.redraw(); // Force reload tiles
+        }
+
+        // Debug: Listen for tile errors to help you diagnose
+        layer.on('tileerror', function(e) {
+            // Update the preview text with the URL that failed
+            const url = e.url;
+            // Shorten it for display
+            const shortUrl = url.split('hollowknight/')[1] || url;
+            document.getElementById('url-preview').innerText = shortUrl;
+        });
+
+        // Debug: Click map to see coordinates
         map.on('click', function(e) {
-            console.log("Map Clicked at:", e.latlng);
+            console.log(e.latlng);
             L.popup()
                 .setLatLng(e.latlng)
-                .setContent("Coordinates: " + e.latlng.lat.toFixed(2) + ", " + e.latlng.lng.toFixed(2))
+                .setContent(`Lat (Y): ${Math.round(e.latlng.lat)}<br>Lng (X): ${Math.round(e.latlng.lng)}`)
                 .openOn(map);
         });
 

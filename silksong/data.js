@@ -1,6 +1,7 @@
 // data.js
 
-// 1. DEFINITIONS: The categories, icons, and groups
+// 1. CONFIGURATION
+// This maps internal IDs to the labels and icon files in your 'icons/' folder
 const mapConfig = {
     groups: {
         exploration: { title: "Exploration", expanded: true },
@@ -8,41 +9,42 @@ const mapConfig = {
         quests: { title: "Quests & Collectibles", expanded: true }
     },
     types: {
-        // Exploration
-        bench:      { group: "exploration", label: "Bench", icon: "🪑", color: "#32cd32" },
-        bellway:    { group: "exploration", label: "Bellway", icon: "🔔", color: "#ffffff" },
-        ventrica:   { group: "exploration", label: "Ventrica", icon: "🚀", color: "#00ccff" },
-        vendor:     { group: "exploration", label: "Vendor", icon: "💰", color: "#ffd700" },
-        map:        { group: "exploration", label: "Map Tool", icon: "🗺️", color: "#aaaaaa" },
-        boss:       { group: "exploration", label: "Boss", icon: "👹", color: "#ff4d4d" },
-        key:        { group: "exploration", label: "Key/Gate", icon: "🔑", color: "#ff9900" },
+        // EXPLORATION
+        bench:      { group: "exploration", label: "Bench", icon: "icons/bench.png" },
+        bellway:    { group: "exploration", label: "Bellway", icon: "icons/bellway.png" },
+        ventrica:   { group: "exploration", label: "Ventrica", icon: "icons/ventrica.png" },
+        vendor:     { group: "exploration", label: "Vendor", icon: "icons/vendor.png" },
+        map:        { group: "exploration", label: "Map Tool", icon: "icons/map.png" },
+        boss:       { group: "exploration", label: "Boss", icon: "icons/boss.png" },
+        key:        { group: "exploration", label: "Key / Gate", icon: "icons/key_and_gate.png" },
 
-        // Combat
-        ability:    { group: "combat", label: "Ability", icon: "⚡", color: "#ffff00" },
-        mask:       { group: "combat", label: "Mask Shard", icon: "🛡️", color: "#eeeeee" },
-        silkheart:  { group: "combat", label: "Silk Heart", icon: "⚪", color: "#ffffff" },
-        spool:      { group: "combat", label: "Spool Fragment", icon: "🧵", color: "#cccccc" },
-        memory:     { group: "combat", label: "Memory Locket", icon: "💾", color: "#555555" },
-        crest:      { group: "combat", label: "Crest", icon: "🧿", color: "#ff00ff" },
-        tool:       { group: "combat", label: "Tool", icon: "🗡️", color: "#aaaaaa" },
-        skill:      { group: "combat", label: "Skill", icon: "⚔️", color: "#ff0000" },
+        // COMBAT
+        ability:    { group: "combat", label: "Ability", icon: "icons/ability.png" },
+        mask:       { group: "combat", label: "Mask Shard", icon: "icons/mask_shard.png" },
+        silkheart:  { group: "combat", label: "Silk Heart", icon: "icons/silk_heart.png" },
+        spool:      { group: "combat", label: "Spool Fragment", icon: "icons/spool_fragment.png" },
+        memory:     { group: "combat", label: "Memory Locket", icon: "icons/memory_locket.png" },
+        crest:      { group: "combat", label: "Crest", icon: "icons/chrest.png" }, // Using 'chrest.png' as per your file list
+        tool:       { group: "combat", label: "Tool", icon: "icons/tool.png" },
+        skill:      { group: "combat", label: "Skill", icon: "icons/skill.png" },
 
-        // Quests
-        wish:       { group: "quests", label: "Wish", icon: "📜", color: "#deb887" },
-        flea:       { group: "quests", label: "Lost Flea", icon: "🐛", color: "#aaffaa" },
-        craftmetal: { group: "quests", label: "Craftmetal", icon: "🧱", color: "#888888" },
-        mossberry:  { group: "quests", label: "Mossberry", icon: "🫐", color: "#44aa44" },
-        pollip:     { group: "quests", label: "Pollip Flower", icon: "🌺", color: "#ff69b4" },
-        flint:      { group: "quests", label: "Flintbeetle", icon: "🪲", color: "#8b4513" },
-        delicacy:   { group: "quests", label: "Delicacy", icon: "🍖", color: "#cd5c5c" },
-        cogheart:   { group: "quests", label: "Cogheart", icon: "⚙️", color: "#a9a9a9" },
-        plasmium:   { group: "quests", label: "Plasmium", icon: "🧪", color: "#00ffff" }
+        // QUESTS & COLLECTIBLES
+        wish:       { group: "quests", label: "Wish", icon: "icons/wish.png" },
+        flea:       { group: "quests", label: "Lost Flea", icon: "icons/lost_flea.png" },
+        craftmetal: { group: "quests", label: "Craftmetal", icon: "icons/craft_metal.png" },
+        mossberry:  { group: "quests", label: "Mossberry", icon: "icons/mossberry.png" },
+        pollip:     { group: "quests", label: "Pollip Flower", icon: "icons/pollip_flower.png" },
+        flint:      { group: "quests", label: "Flintbeetle", icon: "icons/flintbeetle.png" },
+        delicacy:   { group: "quests", label: "Delicacy", icon: "icons/delicacy.png" },
+        cogheart:   { group: "quests", label: "Cogheart", icon: "icons/cogheart.png" },
+        plasmium:   { group: "quests", label: "Plasmium", icon: "icons/plasmium.png" }
     }
 };
 
-// 2. THE DATA: This is where your pins live.
-// You will paste the output from "Dev Mode" here.
+// 2. MAP DATA
+// This is where you will paste the JSON generated by the "Admin Mode".
+// Example data included below to test if it works.
 const mapData = [
-    // Example Marker
-    { type: "bench", x: 2200, y: 3100, title: "Moss Grotto Bench", desc: "Cost: 150 Rosaries" }
+    { "id": "bench_100_100", "type": "bench", "x": 200, "y": 300, "title": "Starting Bench", "desc": "The first bench in the game." },
+    { "id": "flea_150_400",  "type": "flea",  "x": 400, "y": 500, "title": "Hidden Flea",    "desc": "Behind the fake wall." }
 ];

@@ -847,5 +847,190 @@ const mapData = [
         "y": 2519,
         "title": "Ventrica Station - Underworks",
         "desc": ""
+    },
+        //vendor:
+         {
+        "id": "vendor_1319_3021",
+        "type": "vendor",
+        "x": 1319,
+        "y": 3021,
+        "title": "Shakra - Mount Fay",
+        "desc": ""
+    },
+    {
+        "id": "vendor_972_2668",
+        "type": "vendor",
+        "x": 972,
+        "y": 2668,
+        "title": "Shakra - Sands of Karak",
+        "desc": ""
+    },
+    {
+        "id": "vendor_976_2482",
+        "type": "vendor",
+        "x": 976,
+        "y": 2482,
+        "title": "Grindle",
+        "desc": ""
+    },
+    {
+        "id": "vendor_1501_2095",
+        "type": "vendor",
+        "x": 1501,
+        "y": 2095,
+        "title": "Shakra - Blasted Steps",
+        "desc": ""
+    },
+    {
+        "id": "vendor_1018_1485",
+        "type": "vendor",
+        "x": 1018,
+        "y": 1485,
+        "title": "Shakra - Wormways",
+        "desc": ""
+    },
+    {
+        "id": "vendor_1536_1091",
+        "type": "vendor",
+        "x": 1536,
+        "y": 1091,
+        "title": "Pebb",
+        "desc": ""
+    },
+    {
+        "id": "vendor_1574_1128",
+        "type": "vendor",
+        "x": 1574,
+        "y": 1128,
+        "title": "Shakra - Bone Bottom",
+        "desc": ""
+    },
+    {
+        "id": "vendor_1728_1302",
+        "type": "vendor",
+        "x": 1728,
+        "y": 1302,
+        "title": "Shakra - The Marrow",
+        "desc": ""
+    },
+    {
+        "id": "vendor_2061_1688",
+        "type": "vendor",
+        "x": 2061,
+        "y": 1688,
+        "title": "Shakra - Shellwoods",
+        "desc": ""
+    },
+    {
+        "id": "vendor_2718_1665",
+        "type": "vendor",
+        "x": 2718,
+        "y": 1665,
+        "title": "Frey",
+        "desc": ""
+    },
+    {
+        "id": "vendor_2824_1703",
+        "type": "vendor",
+        "x": 2824,
+        "y": 1703,
+        "title": "Shakra - Bellhart",
+        "desc": ""
+    },
+    {
+        "id": "vendor_3437_1377",
+        "type": "vendor",
+        "x": 3437,
+        "y": 1377,
+        "title": "Shakra - Hunter's March",
+        "desc": ""
+    },
+    {
+        "id": "vendor_3568_1497",
+        "type": "vendor",
+        "x": 3568,
+        "y": 1497,
+        "title": "Mottled Skarr",
+        "desc": ""
+    },
+    {
+        "id": "vendor_3287_1061",
+        "type": "vendor",
+        "x": 3287,
+        "y": 1061,
+        "title": "Shakra - Deep Docks",
+        "desc": ""
+    },
+    {
+        "id": "vendor_3560_983",
+        "type": "vendor",
+        "x": 3560,
+        "y": 983,
+        "title": "Forge Daughter",
+        "desc": ""
+    },
+    {
+        "id": "vendor_3985_1337",
+        "type": "vendor",
+        "x": 3985,
+        "y": 1337,
+        "title": "Shakra - Hunter's March",
+        "desc": ""
+    },
+    {
+        "id": "vendor_4462_1046",
+        "type": "vendor",
+        "x": 4462,
+        "y": 1046,
+        "title": "Shakra - Far Fields",
+        "desc": ""
+    },
+    {
+        "id": "vendor_4587_1297",
+        "type": "vendor",
+        "x": 4587,
+        "y": 1297,
+        "title": "Mort",
+        "desc": ""
+    },
+    {
+        "id": "vendor_4619_1814",
+        "type": "vendor",
+        "x": 4619,
+        "y": 1814,
+        "title": "Shakra - Greymoor",
+        "desc": ""
+    },
+    {
+        "id": "vendor_4841_2633",
+        "type": "vendor",
+        "x": 4841,
+        "y": 2633,
+        "title": "Shakra - Bilewater",
+        "desc": ""
+    },
+    {
+        "id": "vendor_3951_3372",
+        "type": "vendor",
+        "x": 3951,
+        "y": 3372,
+        "title": "Jubilana",
+        "desc": ""
+    },
+    {
+        "id": "vendor_3396_2627",
+        "type": "vendor",
+        "x": 3396,
+        "y": 2627,
+        "title": "Twelfth Architect",
+        "desc": ""
+    },
+    {
+        "id": "vendor_4066_2179",
+        "type": "vendor",
+        "x": 4066,
+        "y": 2179,
+        "title": "Shakra - Sinner's Road",
+        "desc": ""
     }
 ];

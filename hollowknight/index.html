@@ -1,40 +1,193 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Hollow Knight Map</title>
+    <title>Hollow Knight Map Debugger</title>
+    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-    
     <style>
-        body, html { margin: 0; padding: 0; height: 100%; background: #0c0c0c; overflow: hidden; }
-        #map { width: 100%; height: 100%; background: #0c0c0c; }
+        body { margin: 0; background: #000; font-family: monospace; }
+        #map { width: 100vw; height: 100vh; }
         
-        /* Debug Label styling */
-        .tile-label {
-            font-size: 14px;
-            color: rgba(255, 255, 0, 0.7); /* Yellow text */
-            border: 1px solid rgba(255, 255, 0, 0.3);
+        /* DEBUG STYLES */
+        .tile-debug {
+            border: 1px solid red; /* Red = Loading/Error */
+            color: red;
+            background: rgba(0,0,0,0.2);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-family: monospace;
-            font-weight: bold;
+            font-size: 12px;
+            text-align: center;
         }
+        .tile-debug.loaded {
+            border: 1px solid #0f0; /* Green = Loaded */
+            color: #0f0;
+        }
+        .tile-debug img {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        
+        /* CONTROL PANEL */
+        .controls {
+            position: absolute;
+            top: 10px; right: 10px;
+            z-index: 1000;
+            background: rgba(0,0,0,0.9);
+            padding: 15px;
+            color: white;
+            border: 1px solid #444;
+            max-width: 300px;
+        }
+        button {
+            background: #333; color: white; border: 1px solid #666;
+            padding: 5px 10px; margin: 2px; cursor: pointer; width: 45%;
+        }
+        button:hover { background: #555; }
+        .active { background: #006400; border-color: #0f0; }
     </style>
 </head>
 <body>
 
-    <!-- The Map Container -->
     <div id="map"></div>
-
-    <!-- Leaflet JS -->
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     
-    <!-- YOUR SCRIPT -->
-    <script src="script.js"></script>
+    <div class="controls">
+        <h3>🛠️ Map Fixer</h3>
+        <div id="status">Loading...</div>
+        <hr>
+        <button onclick="adjust('yInv')">Invert Y: <span id="lbl-inv">OFF</span></button>
+        <button onclick="adjust('tms')">TMS Mode: <span id="lbl-tms">OFF</span></button>
+        <hr>
+        <button onclick="move(0, -1)">Row Up</button>
+        <button onclick="move(0, 1)">Row Down</button>
+        <button onclick="move(-1, 0)">Col Left</button>
+        <button onclick="move(1, 0)">Col Right</button>
+        <div style="margin-top:10px; font-size: 0.9em; color: #aaa;">
+            Current Offset: X=<span id="off-x">0</span>, Y=<span id="off-y">0</span>
+        </div>
+    </div>
 
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        // --- SETTINGS ---
+        const TILE_SIZE = 256;
+        // We start looking at 9/10/108 because we SAW it in your file list.
+        // If this tile loads, the map works.
+        const START_Z = 9;
+        const START_X = 10;
+        const START_Y = 108;
+
+        // --- STATE ---
+        let state = {
+            invertY: false,
+            tms: false,
+            xOffset: 0,
+            yOffset: 0
+        };
+
+        // Setup Map
+        // CRS.Simple: Y goes negative downwards. X goes positive right.
+        const map = L.map('map', {
+            crs: L.CRS.Simple,
+            minZoom: 0,
+            maxZoom: 10,
+            zoomControl: false
+        });
+        
+        // Center on our known target tile
+        // X = 10 * 256
+        // Y = -108 * 256 (Leaflet uses negative Y)
+        map.setView([-START_Y * TILE_SIZE, START_X * TILE_SIZE], START_Z);
+        L.control.zoom({position: 'topleft'}).addTo(map);
+
+        // --- CUSTOM DEBUG LAYER ---
+        const DebugLayer = L.TileLayer.extend({
+            createTile: function(coords, done) {
+                const tile = document.createElement('div');
+                tile.className = 'tile-debug';
+                
+                // CALCULATE URL
+                let z = coords.z;
+                let x = coords.x + state.xOffset;
+                let y = coords.y + state.yOffset;
+
+                // 1. Leaflet Y is usually negative in Simple CRS. Make positive for files.
+                // If coords.y is -10, we want file 10.
+                let finalY = y;
+
+                if (state.invertY) {
+                     // If map is upside down:
+                    finalY = -y; 
+                } else {
+                    // Standard VIPS/Leaflet match
+                    finalY = Math.abs(y); 
+                }
+
+                if (state.tms) {
+                    // Bottom-up numbering
+                    finalY = (Math.pow(2, z) - 1) - Math.abs(y);
+                }
+
+                const url = `my_tiles/${z}/${x}/${finalY}.png`;
+                
+                // DEBUG TEXT ON TILE
+                tile.innerHTML = `
+                    Z:${z}<br>
+                    X:${x}<br>
+                    Y:${finalY}
+                `;
+
+                // LOAD IMAGE
+                const img = document.createElement('img');
+                img.src = url;
+                
+                img.onload = function() {
+                    tile.classList.add('loaded');
+                    tile.appendChild(img); // Add image only if it loads
+                    done(null, tile);
+                };
+
+                img.onerror = function() {
+                    // Keep red border, don't add image
+                    done(null, tile);
+                };
+
+                return tile;
+            }
+        });
+
+        let layer = new DebugLayer('', {tileSize: TILE_SIZE, noWrap: true}).addTo(map);
+
+        // --- UI LOGIC ---
+        function update() {
+            layer.redraw();
+            document.getElementById('lbl-inv').innerText = state.invertY ? "ON" : "OFF";
+            document.getElementById('lbl-tms').innerText = state.tms ? "ON" : "OFF";
+            document.getElementById('off-x').innerText = state.xOffset;
+            document.getElementById('off-y').innerText = state.yOffset;
+            
+            // Update Status
+            const center = map.getCenter();
+            document.getElementById('status').innerText = 
+                `Look at map center. We expect images near X:${START_X} Y:${START_Y}`;
+        }
+
+        function adjust(mode) {
+            if(mode === 'yInv') state.invertY = !state.invertY;
+            if(mode === 'tms') state.tms = !state.tms;
+            update();
+        }
+
+        function move(x, y) {
+            state.xOffset += x;
+            state.yOffset += y;
+            update();
+        }
+        
+        update(); // Init
+    </script>
 </body>
 </html>

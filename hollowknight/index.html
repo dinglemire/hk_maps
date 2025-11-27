@@ -1,105 +1,75 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hollow Knight Map</title>
-    
-    <!-- Leaflet CSS -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" 
-          integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" 
-          crossorigin=""/>
-
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <style>
-        body, html { margin: 0; padding: 0; height: 100%; background: #000; }
-        #map { width: 100%; height: 100%; background: #0c0c0c; }
+        body { margin: 0; background: #000; }
+        #map { width: 100vw; height: 100vh; background: #000; }
         
-        /* Custom Map Controls styling */
-        .leaflet-bar a { background-color: #222; color: #fff; border-bottom: 1px solid #444; }
-        .leaflet-bar a:hover { background-color: #444; }
-        .coord-box {
-            background: rgba(0, 0, 0, 0.7);
-            padding: 5px 10px;
-            color: #aaa;
-            font-family: monospace;
-            border-radius: 4px;
-            border: 1px solid #333;
-        }
+        /* Debug Grid: shows red outline around tiles */
+        .leaflet-tile { border: 1px solid rgba(255, 0, 0, 0.2); }
     </style>
 </head>
 <body>
-
     <div id="map"></div>
-
-    <!-- Leaflet JS -->
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" 
-            integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" 
-            crossorigin=""></script>
-
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script>
-        // --- MAP CONFIGURATION ---
-        const MIN_ZOOM = 0;
-        const MAX_ZOOM = 9;
+        // --- CONFIGURATION ---
         const TILE_SIZE = 256;
-
-        // Calculated based on your files (X: ~100 tiles, Y: ~150 tiles at Zoom 9)
-        // In Leaflet Simple CRS, Y is negative.
-        const CENTER_X = 100 * TILE_SIZE; 
-        const CENTER_Y = -150 * TILE_SIZE; 
-
-        // 1. INITIALIZE MAP
+        // Based on your file list, your map content is centered here at Zoom 9:
+        // X files exist from ~10 to ~200. Center ~100.
+        // Y files exist from ~20 to ~250. Center ~140.
+        const CENTER_TILE_X = 100;
+        const CENTER_TILE_Y = 140;
+        
         const map = L.map('map', {
-            crs: L.CRS.Simple,       // "Flat" coordinate system for game maps
-            minZoom: MIN_ZOOM,
-            maxZoom: MAX_ZOOM,
-            zoomControl: false,      // We will add a custom one
-            attributionControl: false
+            crs: L.CRS.Simple,
+            minZoom: 0,
+            maxZoom: 9,
+            zoomControl: false
         });
 
-        // 2. ADD TILES
         L.tileLayer('my_tiles/{z}/{x}/{y}.png', {
             tileSize: TILE_SIZE,
             noWrap: true,
-            minZoom: MIN_ZOOM,
-            maxZoom: MAX_ZOOM,
-            errorTileUrl: 'my_tiles/blank.png', // Load this if a tile is missing/black
-            tms: false // Your files are Top-to-Bottom (Standard), so this is false.
+            bounds: [[-100000, -100000], [100000, 100000]], // Allow dragging anywhere
+            errorTileUrl: '', // Don't show broken image icons for missing tiles
+            attribution: 'Hollow Knight'
         }).addTo(map);
 
-        // 3. SET VIEW TO CENTER
-        // We point the camera at the calculated center of your tiles
-        map.setView([CENTER_Y, CENTER_X], 2);
+        // --- SET VIEW TO THE CONTENT ---
+        // Leaflet Simple CRS: [0,0] is top left. Y goes negative.
+        // We calculate the pixel coordinates of your center tile at Zoom 9.
+        const centerX = CENTER_TILE_X * TILE_SIZE;
+        const centerY = -1 * CENTER_TILE_Y * TILE_SIZE; // Negative because CRS.Simple goes down
 
-        // 4. CONTROLS
+        map.setView([centerY, centerX], 9); // Start at Zoom 9 to ensure you see the files we know exist
+        
         L.control.zoom({ position: 'topright' }).addTo(map);
 
-        // 5. DEBUG TOOL (COORDINATE FINDER)
-        // Shows coordinates in the bottom left when you move the mouse
-        const CoordControl = L.Control.extend({
-            onAdd: map => {
-                const div = L.DomUtil.create('div', 'coord-box');
-                div.id = 'coords';
-                div.innerHTML = "Move mouse...";
-                return div;
-            }
-        });
-        new CoordControl({ position: 'bottomleft' }).addTo(map);
-
-        map.on('mousemove', e => {
-            const x = Math.round(e.latlng.lng);
-            const y = Math.round(e.latlng.lat);
-            document.getElementById('coords').innerHTML = `X: ${x} | Y: ${y}`;
-        });
-
-        // Click to create a popup (Useful for placing markers later)
-        map.on('click', e => {
-            console.log(`Location: [${e.latlng.lat}, ${e.latlng.lng}]`);
+        // --- DEBUG HELPER ---
+        // This popup tells you where you are, so you can find your map if lost
+        map.on('click', function(e) {
+            const z = map.getZoom();
+            // Calculate which tile folder this click corresponds to
+            const tileX = Math.floor(e.latlng.lng / TILE_SIZE);
+            const tileY = Math.floor(-e.latlng.lat / TILE_SIZE);
+            
             L.popup()
                 .setLatLng(e.latlng)
-                .setContent(`Pos: [${e.latlng.lat.toFixed(0)}, ${e.latlng.lng.toFixed(0)}]`)
+                .setContent(`
+                    <strong>You are at:</strong><br>
+                    Zoom: ${z}<br>
+                    Tile X: ${tileX}<br>
+                    Tile Y: ${tileY}<br>
+                    <br>
+                    <em>Look in your my_tiles/${z}/${tileX} folder to see if a file exists here!</em>
+                `)
                 .openOn(map);
         });
-
     </script>
 </body>
 </html>

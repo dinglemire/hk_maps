@@ -33,9 +33,7 @@ const map = L.map('map', {
 
 const HollowKnightLayer = L.TileLayer.extend({
     getTileUrl: function(coords) {
-        // Prevent scrolling up into negative Y
         if (coords.y < 0) return ""; 
-        // Standard Z/Y/X as established
         return `my_tiles/${coords.z}/${coords.y}/${coords.x}.png`;
     }
 });
@@ -82,12 +80,19 @@ function init() {
     }
 }
 
-// --- 3. MARKER LOGIC ---
+// --- 3. MARKER LOGIC (FIXED ANCHOR) ---
 function createMarker(lat, lng, catId, iconId, title) {
+    // Calculate center anchor
+    const anchorPos = currentIconSize / 2;
+
     const hkIcon = L.icon({
         iconUrl: `icons/${iconId}.png`,
         iconSize: [currentIconSize, currentIconSize],
-        popupAnchor: [0, -currentIconSize/2],
+        
+        // CRITICAL FIX: This centers the icon on the click coordinates
+        iconAnchor: [anchorPos, anchorPos], 
+        
+        popupAnchor: [0, -anchorPos],
         className: 'hk-marker'
     });
 
@@ -103,40 +108,43 @@ function createMarker(lat, lng, catId, iconId, title) {
 
 // --- 4. UI ACTIONS ---
 
-// Toggle Categories
 window.toggleLayer = function(id, show) {
     if(show) map.addLayer(layers[id]);
     else map.removeLayer(layers[id]);
     filterSearch(); 
 }
 
-// Toggle All
 window.toggleAll = function(show) {
     const checkboxes = document.querySelectorAll('.cat-item input');
     checkboxes.forEach(cb => {
         cb.checked = show;
-        // Find category ID based on the name span next to image
         const catName = cb.parentElement.querySelector('.cat-name').innerText;
         const catId = categories.find(c => c.name === catName).id;
         toggleLayer(catId, show);
     });
 }
 
-// Icon Size Slider
+// Slider: Updates size AND Anchor
 const slider = document.getElementById('icon-slider');
 slider.oninput = function() {
     currentIconSize = parseInt(this.value);
+    const anchorPos = currentIconSize / 2;
     document.getElementById('size-val').innerText = currentIconSize + 'px';
     
     allMarkers.forEach(item => {
         const icon = item.marker.options.icon;
+        
+        // Update size
         icon.options.iconSize = [currentIconSize, currentIconSize];
-        icon.options.popupAnchor = [0, -currentIconSize/2];
+        
+        // Update anchor to keep it centered
+        icon.options.iconAnchor = [anchorPos, anchorPos];
+        icon.options.popupAnchor = [0, -anchorPos];
+        
         item.marker.setIcon(icon);
     });
 };
 
-// Search
 const searchInput = document.getElementById('search-input');
 searchInput.addEventListener('input', filterSearch);
 
@@ -157,9 +165,7 @@ function filterSearch() {
     });
 }
 
-// ... (Keep everything above map.on('click') exactly the same) ...
-
-// --- 5. DEV MODE LOGIC ---
+// --- 5. DEV MODE LOGIC (FIXED OUTPUT) ---
 window.toggleDevMode = function() {
     isDevMode = !isDevMode;
     const btn = document.getElementById('dev-btn');
@@ -182,26 +188,29 @@ map.on('click', function(e) {
     if (!isDevMode) return;
 
     const catId = document.getElementById('dev-cat-select').value;
-    // Use toFixed(0) for cleaner integer coordinates
     const lat = e.latlng.lat.toFixed(0);
     const lng = e.latlng.lng.toFixed(0);
 
     const title = prompt("Enter Pin Title:");
     if(!title) return;
 
-    const iconId = prompt("Enter Icon Number (file name without .png):", "1");
+    const iconId = prompt("Enter Icon Number:", "1");
     if(!iconId) return;
 
-    // Create Marker Visual
     createMarker(lat, lng, catId, iconId, title);
 
-    // Generate JSON String
+    // New Line for Data.js
     const jsonLine = `{ "lat": ${lat}, "lng": ${lng}, "cat": "${catId}", "icon": "${iconId}", "title": "${title}" },\n`;
     
-    // Append to Textbox
+    // Output to Text Area
     const outputBox = document.getElementById('json-output');
-    outputBox.value += jsonLine;
-    outputBox.scrollTop = outputBox.scrollHeight; // Scroll to bottom
+    if(outputBox) {
+        outputBox.value += jsonLine;
+        outputBox.scrollTop = outputBox.scrollHeight; // Auto scroll to bottom
+    } else {
+        console.error("Could not find textarea!");
+        console.log(jsonLine);
+    }
 });
 
 // Launch

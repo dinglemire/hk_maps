@@ -10,13 +10,13 @@ body, html {
     background: #0c0c0c; 
 }
 
-/* --- FIX GREY SQUARES --- */
-/* This forces Leaflet's container to be black */
+/* --- CRITICAL FIXES --- */
+/* 1. Force Leaflet internal background to black */
 .leaflet-container {
     background: #000 !important; 
 }
 
-/* Hide broken tile borders */
+/* 2. Hide broken tiles */
 img.leaflet-tile { 
     background: transparent !important; 
     border: none !important; 
@@ -91,10 +91,10 @@ input[type="range"] { width: 100%; accent-color: #fff; cursor: pointer; }
 .dev-toggle.on { background: #27ae60; }
 select { width: 100%; padding: 5px; background: #222; color: white; border: 1px solid #444; margin-top: 5px; }
 
-/* New Output Box Style */
+/* Output Box Styling */
 #json-output {
     width: 95%;
-    height: 150px;
+    height: 100px;
     background: #000;
     color: #0f0;
     border: 1px solid #444;
@@ -103,4 +103,6 @@ select { width: 100%; padding: 5px; background: #222; color: white; border: 1px 
     margin-top: 10px;
     resize: vertical;
     padding: 5px;
+    white-space: pre; /* Keeps formatting */
+    overflow-x: auto;
 }

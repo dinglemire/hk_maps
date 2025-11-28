@@ -2,7 +2,7 @@
 const TILE_SIZE = 256;
 const MAX_ZOOM = 9;
 
-// Define Categories & Icons
+// Categories
 const categories = [
     { id: 'bench', name: 'Bench & Transport', icon: '23.png' },
     { id: 'shortcuts', name: 'Shortcuts', icon: '50.png' },
@@ -16,13 +16,13 @@ const categories = [
     { id: 'geo', name: 'Geo & Soul Totems', icon: '4.png' }
 ];
 
-// --- STATE MANAGEMENT ---
+// State
 const layers = {};
 const allMarkers = []; 
 let currentIconSize = 32;
 let isDevMode = false;
 
-// --- 1. MAP SETUP ---
+// 1. MAP SETUP
 const map = L.map('map', {
     crs: L.CRS.Simple,
     minZoom: 0,
@@ -48,16 +48,15 @@ new HollowKnightLayer('', {
 map.setView([-100, 100], 4);
 L.control.zoom({ position: 'topright' }).addTo(map);
 
-// --- 2. APP INITIALIZATION ---
+// 2. INITIALIZATION
 function init() {
     const listContainer = document.getElementById('category-list');
     const devSelect = document.getElementById('dev-cat-select');
 
     categories.forEach(cat => {
-        // Create Layer Group
         layers[cat.id] = L.layerGroup().addTo(map);
 
-        // Build Sidebar Item
+        // Sidebar Item
         const item = document.createElement('div');
         item.className = 'cat-item';
         item.innerHTML = `
@@ -67,31 +66,27 @@ function init() {
         `;
         listContainer.appendChild(item);
 
-        // Build Dev Dropdown
+        // Dev Dropdown
         const opt = document.createElement('option');
         opt.value = cat.id;
         opt.innerText = cat.name;
         devSelect.appendChild(opt);
     });
 
-    // Load Pins from data.js
+    // Load Saved Data
     if (typeof savedPins !== 'undefined') {
         savedPins.forEach(p => createMarker(p.lat, p.lng, p.cat, p.icon, p.title));
     }
 }
 
-// --- 3. MARKER LOGIC (FIXED ANCHOR) ---
+// 3. MARKER LOGIC
 function createMarker(lat, lng, catId, iconId, title) {
-    // Calculate center anchor
     const anchorPos = currentIconSize / 2;
 
     const hkIcon = L.icon({
         iconUrl: `icons/${iconId}.png`,
         iconSize: [currentIconSize, currentIconSize],
-        
-        // CRITICAL FIX: This centers the icon on the click coordinates
-        iconAnchor: [anchorPos, anchorPos], 
-        
+        iconAnchor: [anchorPos, anchorPos], // Centered
         popupAnchor: [0, -anchorPos],
         className: 'hk-marker'
     });
@@ -99,15 +94,11 @@ function createMarker(lat, lng, catId, iconId, title) {
     const marker = L.marker([lat, lng], {icon: hkIcon, title: title});
     marker.bindPopup(`<b>${title}</b><br><small>${categories.find(c=>c.id===catId).name}</small>`);
     
-    if(layers[catId]) {
-        layers[catId].addLayer(marker);
-    }
-
+    if(layers[catId]) layers[catId].addLayer(marker);
     allMarkers.push({ marker: marker, catId: catId });
 }
 
-// --- 4. UI ACTIONS ---
-
+// 4. UI ACTIONS
 window.toggleLayer = function(id, show) {
     if(show) map.addLayer(layers[id]);
     else map.removeLayer(layers[id]);
@@ -124,7 +115,6 @@ window.toggleAll = function(show) {
     });
 }
 
-// Slider: Updates size AND Anchor
 const slider = document.getElementById('icon-slider');
 slider.oninput = function() {
     currentIconSize = parseInt(this.value);
@@ -133,14 +123,9 @@ slider.oninput = function() {
     
     allMarkers.forEach(item => {
         const icon = item.marker.options.icon;
-        
-        // Update size
         icon.options.iconSize = [currentIconSize, currentIconSize];
-        
-        // Update anchor to keep it centered
         icon.options.iconAnchor = [anchorPos, anchorPos];
         icon.options.popupAnchor = [0, -anchorPos];
-        
         item.marker.setIcon(icon);
     });
 };
@@ -150,11 +135,9 @@ searchInput.addEventListener('input', filterSearch);
 
 function filterSearch() {
     const text = searchInput.value.toLowerCase();
-    
     allMarkers.forEach(item => {
         const layerGroup = layers[item.catId];
         const matchesSearch = item.marker.options.title.toLowerCase().includes(text);
-        
         if (map.hasLayer(layerGroup)) {
             if (matchesSearch) {
                 if (!layerGroup.hasLayer(item.marker)) layerGroup.addLayer(item.marker);
@@ -165,7 +148,7 @@ function filterSearch() {
     });
 }
 
-// --- 5. DEV MODE LOGIC (FIXED OUTPUT) ---
+// 5. DEV MODE LOGIC
 window.toggleDevMode = function() {
     isDevMode = !isDevMode;
     const btn = document.getElementById('dev-btn');
@@ -188,8 +171,10 @@ map.on('click', function(e) {
     if (!isDevMode) return;
 
     const catId = document.getElementById('dev-cat-select').value;
-    const lat = e.latlng.lat.toFixed(0);
-    const lng = e.latlng.lng.toFixed(0);
+    
+    // FIX: Use high precision coordinates
+    const lat = e.latlng.lat.toFixed(6); 
+    const lng = e.latlng.lng.toFixed(6);
 
     const title = prompt("Enter Pin Title:");
     if(!title) return;
@@ -199,19 +184,13 @@ map.on('click', function(e) {
 
     createMarker(lat, lng, catId, iconId, title);
 
-    // New Line for Data.js
+    // Append to Output Box
     const jsonLine = `{ "lat": ${lat}, "lng": ${lng}, "cat": "${catId}", "icon": "${iconId}", "title": "${title}" },\n`;
-    
-    // Output to Text Area
     const outputBox = document.getElementById('json-output');
-    if(outputBox) {
-        outputBox.value += jsonLine;
-        outputBox.scrollTop = outputBox.scrollHeight; // Auto scroll to bottom
-    } else {
-        console.error("Could not find textarea!");
-        console.log(jsonLine);
-    }
+    
+    outputBox.style.display = 'block'; // Ensure visible
+    outputBox.value += jsonLine;
+    outputBox.scrollTop = outputBox.scrollHeight;
 });
 
-// Launch
 init();

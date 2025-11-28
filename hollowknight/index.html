@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>HK Map Final Fix</title>
+    <title>Hollow Knight Map</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <style>
-        body { margin: 0; background: #000; font-family: sans-serif; }
+        body { margin: 0; background: #0c0c0c; font-family: sans-serif; }
         #map { width: 100vw; height: 100vh; background: #0c0c0c; }
         
         .controls {
@@ -28,7 +28,7 @@
     
     <div class="controls">
         <strong>🔧 Configuration</strong><hr>
-        <button onclick="toggle('swap')" id="btn-swap">🔀 Swap X/Y Folders</button>
+        <button onclick="toggle('swap')" id="btn-swap" class="active">🔀 Swap X/Y (On)</button>
         <button onclick="toggle('invert')" id="btn-inv">↕️ Invert Y Axis</button>
     </div>
 
@@ -37,9 +37,10 @@
         const TILE_SIZE = 256;
         
         // STATE
+        // We default SwapXY to true because you confirmed it connects the images correctly.
         let state = {
-            swapXY: false, // Check if folders are Z/Y/X instead of Z/X/Y
-            invertY: false // Check if Y needs flipping
+            swapXY: true, 
+            invertY: false 
         };
 
         // SETUP MAP
@@ -57,23 +58,23 @@
                 let x = coords.x;
                 let y = coords.y;
                 
-                // 1. Handle Inversion (Leaflet is negative Y by default)
-                // We start by making it positive absolute
-                let finalY = Math.abs(y);
+                // 1. STOP MIRRORING (The Fix)
+                // If y is negative (scrolling up above the map), don't load anything.
+                if (y < 0) return ""; 
                 
-                // If "Invert" is active, we flip the counting direction
-                // (assuming typical TMS style relative to zoom)
+                // 2. Handle Inversion (Optional toggle)
                 if (state.invertY) {
-                    finalY = (Math.pow(2, z) - 1) - finalY;
+                    y = (Math.pow(2, z) - 1) - y;
                 }
 
-                // 2. Handle Folder Structure
+                // 3. Handle Folder Swapping (The logic that fixed your puzzle)
+                // Note: vips/deepzoom often saves as 'column/row' (x/y) but sometimes 'row/column' (y/x)
                 if (state.swapXY) {
                     // Use Y for the folder, X for the file
-                    return `my_tiles/${z}/${finalY}/${x}.png`;
+                    return `my_tiles/${z}/${y}/${x}.png`;
                 } else {
                     // Standard: Use X for the folder, Y for the file
-                    return `my_tiles/${z}/${x}/${finalY}.png`;
+                    return `my_tiles/${z}/${x}/${y}.png`;
                 }
             }
         });
@@ -86,7 +87,7 @@
         }).addTo(map);
 
         // VIEW
-        map.setView([-100, 100], 4); // Start zoomed out to see the pattern
+        map.setView([-100, 100], 4);
         L.control.zoom({ position: 'topleft' }).addTo(map);
 
         // LOGIC
@@ -94,10 +95,16 @@
             if(mode === 'swap') state.swapXY = !state.swapXY;
             if(mode === 'invert') state.invertY = !state.invertY;
             
-            // Update Buttons
-            document.getElementById('btn-swap').className = state.swapXY ? 'active' : '';
-            document.getElementById('btn-inv').className = state.invertY ? 'active' : '';
+            // Update Button Visuals
+            const btnSwap = document.getElementById('btn-swap');
+            const btnInv = document.getElementById('btn-inv');
             
+            btnSwap.className = state.swapXY ? 'active' : '';
+            btnSwap.innerText = state.swapXY ? '🔀 Swap X/Y (On)' : '🔀 Swap X/Y (Off)';
+            
+            btnInv.className = state.invertY ? 'active' : '';
+            btnInv.innerText = state.invertY ? '↕️ Invert Y (On)' : '↕️ Invert Y (Off)';
+
             tileLayer.redraw();
         }
     </script>

@@ -157,7 +157,9 @@ function filterSearch() {
     });
 }
 
-// --- 5. DEV MODE ---
+// ... (Keep everything above map.on('click') exactly the same) ...
+
+// --- 5. DEV MODE LOGIC ---
 window.toggleDevMode = function() {
     isDevMode = !isDevMode;
     const btn = document.getElementById('dev-btn');
@@ -180,6 +182,7 @@ map.on('click', function(e) {
     if (!isDevMode) return;
 
     const catId = document.getElementById('dev-cat-select').value;
+    // Use toFixed(0) for cleaner integer coordinates
     const lat = e.latlng.lat.toFixed(0);
     const lng = e.latlng.lng.toFixed(0);
 
@@ -189,10 +192,16 @@ map.on('click', function(e) {
     const iconId = prompt("Enter Icon Number (file name without .png):", "1");
     if(!iconId) return;
 
+    // Create Marker Visual
     createMarker(lat, lng, catId, iconId, title);
 
-    const json = `{ "lat": ${lat}, "lng": ${lng}, "cat": "${catId}", "icon": "${iconId}", "title": "${title}" },`;
-    console.log(json);
+    // Generate JSON String
+    const jsonLine = `{ "lat": ${lat}, "lng": ${lng}, "cat": "${catId}", "icon": "${iconId}", "title": "${title}" },\n`;
+    
+    // Append to Textbox
+    const outputBox = document.getElementById('json-output');
+    outputBox.value += jsonLine;
+    outputBox.scrollTop = outputBox.scrollHeight; // Scroll to bottom
 });
 
 // Launch

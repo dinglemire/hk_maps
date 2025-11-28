@@ -5,9 +5,7 @@
     <title>Hollow Knight Interactive Map</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-    <!-- Custom CSS -->
     <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -41,21 +39,19 @@
             <button id="dev-btn" class="dev-toggle" onclick="toggleDevMode()">Enable Dev Mode</button>
             
             <div id="dev-panel" class="dev-panel">
-                <small>1. Select Category<br>2. Click Map<br>3. Check Console</small>
+                <small>1. Select Category<br>2. Click Map</small>
                 <select id="dev-cat-select"></select>
+                
+                <!-- NEW: Output Box -->
+                <textarea id="json-output" placeholder="Generated Code will appear here..."></textarea>
             </div>
         </div>
     </div>
 
     <div id="map"></div>
 
-    <!-- Leaflet JS -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    
-    <!-- 1. Load Data -->
     <script src="data.js"></script>
-    
-    <!-- 2. Load Application Logic -->
     <script src="script.js"></script>
 
 </body>

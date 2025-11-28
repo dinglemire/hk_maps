@@ -5,7 +5,7 @@ const MAX_ZOOM = 9;
 // Categories
 const categories = [
     { id: 'bench', name: 'Bench & Transport', icon: '23.png' },
-    { id: 'shortcuts', name: 'Shortcuts', icon: '50.png' },
+    { id: 'area_map', name: 'Area map (Cornifer)', icon: '5.png' },
     { id: 'upgrades', name: 'Upgrades', icon: '29.png' },
     { id: 'charms', name: 'Charms', icon: '44.png' },
     { id: 'bosses', name: 'Bosses', icon: '35.png' },

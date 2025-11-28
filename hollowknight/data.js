@@ -54,6 +54,19 @@ const savedPins = [
 { "lat": -27.585938, "lng": 90.107154, "cat": "bench", "icon": "23", "title": "Bench - Crystal Peak" },
 { "lat": -15.363281, "lng": 88.884369, "cat": "bench", "icon": "23", "title": "Bench - Crystal Peak" },
 { "lat": -41.312500, "lng": 73.111044, "cat": "bench", "icon": "23", "title": "Bench - City Storerooms" },
-{ "lat": -41.212891, "lng": 73.813985, "cat": "bench", "icon": "19", "title": "Stag Station - City Storerooms" }
+{ "lat": -41.212891, "lng": 73.813985, "cat": "bench", "icon": "19", "title": "Stag Station - City Storerooms" },
+{ "lat": -13.621094, "lng": 27.333852, "cat": "area_map", "icon": "5", "title": "Cornifer" },
+{ "lat": -28.572266, "lng": 56.060040, "cat": "area_map", "icon": "5", "title": "Cornifer" },
+{ "lat": -27.777344, "lng": 43.671647, "cat": "area_map", "icon": "5", "title": "Cornifer" },
+{ "lat": -37.652344, "lng": 39.382437, "cat": "area_map", "icon": "5", "title": "Cornifer" },
+{ "lat": -43.779297, "lng": 28.610884, "cat": "area_map", "icon": "5", "title": "Cornifer" },
+{ "lat": -56.597656, "lng": 34.720744, "cat": "area_map", "icon": "5", "title": "Cornifer" },
+{ "lat": -60.783203, "lng": 41.972232, "cat": "area_map", "icon": "5", "title": "Cornifer" },
+{ "lat": -58.748047, "lng": 61.220217, "cat": "area_map", "icon": "5", "title": "Cornifer" },
+{ "lat": -16.785156, "lng": 84.013240, "cat": "area_map", "icon": "5", "title": "Cornifer" },
+{ "lat": -59.570313, "lng": 115.276848, "cat": "area_map", "icon": "5", "title": "Cornifer" },
+{ "lat": -71.470703, "lng": 83.851694, "cat": "area_map", "icon": "5", "title": "Cornifer" },
+{ "lat": -45.820313, "lng": 81.530901, "cat": "area_map", "icon": "5", "title": "Cornifer" },
+{ "lat": -47.568359, "lng": 43.793157, "cat": "area_map", "icon": "5", "title": "Cornifer" }
 
 ];

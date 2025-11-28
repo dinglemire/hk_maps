@@ -46,7 +46,6 @@ const layers = {};
 const allMarkers = []; 
 let currentIconSize = 32;
 let isDevMode = false;
-let isSidebarOpen = true;
 
 // --- 1. MAP SETUP ---
 const map = L.map('map', {
@@ -84,20 +83,19 @@ function init() {
         const groupDiv = document.createElement('div');
         groupDiv.className = 'group-container';
         
-        // 1. GROUP HEADER (Toggle All + Expand)
+        // 1. GROUP HEADER
         const header = document.createElement('div');
         header.className = 'group-header';
         
-        // Checkbox for Group (Select All)
+        // Group Checkbox (Start UNCHECKED)
         const groupCheckbox = document.createElement('input');
         groupCheckbox.type = 'checkbox';
-        groupCheckbox.checked = true;
+        groupCheckbox.checked = false; // Default OFF
         groupCheckbox.onclick = (e) => {
-             e.stopPropagation(); // Don't collapse when checking
+             e.stopPropagation(); 
              toggleGroup(group.id, groupCheckbox.checked);
         };
 
-        // Title and Arrow (Click to Expand)
         const title = document.createElement('span');
         title.className = 'group-title';
         title.innerText = group.groupName;
@@ -110,29 +108,31 @@ function init() {
         header.appendChild(title);
         header.appendChild(arrow);
         
-        // Click header to toggle accordion
+        // Toggle accordion visibility
         header.onclick = () => {
-            itemsDiv.classList.toggle('open');
-            groupDiv.classList.toggle('active');
+            itemsDiv.classList.toggle('closed');
+            groupDiv.classList.toggle('closed');
         };
 
         groupDiv.appendChild(header);
 
-        // 2. GROUP ITEMS CONTAINER (Hidden by default via CSS)
+        // 2. ITEMS CONTAINER (Visible by default in CSS now)
         const itemsDiv = document.createElement('div');
         itemsDiv.className = 'group-items';
         itemsDiv.id = `group-${group.id}`;
 
-        // 3. INDIVIDUAL ITEMS
+        // 3. ITEMS
         group.items.forEach(cat => {
-            // Leaflet Layer
-            layers[cat.id] = L.layerGroup().addTo(map);
+            // Create Layer (DO NOT ADD TO MAP YET)
+            layers[cat.id] = L.layerGroup(); 
 
             // Sidebar Item
             const item = document.createElement('div');
             item.className = 'cat-item';
+            
+            // Checkbox (Start UNCHECKED, remove 'checked' attribute)
             item.innerHTML = `
-                <input type="checkbox" checked onchange="toggleLayer('${cat.id}', this.checked)" class="item-check">
+                <input type="checkbox" onchange="toggleLayer('${cat.id}', this.checked)" class="item-check">
                 <img src="icons/${cat.icon}" class="cat-icon">
                 <span class="cat-name">${cat.name}</span>
             `;
@@ -157,40 +157,25 @@ function init() {
 
 // --- 3. UI LOGIC ---
 
-// Sidebar Slide
 window.toggleSidebar = function() {
     const sidebar = document.getElementById('sidebar');
     const btn = document.querySelector('.sidebar-toggle-btn');
     sidebar.classList.toggle('closed');
-    
-    if (sidebar.classList.contains('closed')) {
-        btn.innerText = "❯"; // Arrow pointing right
-    } else {
-        btn.innerText = "❮"; // Arrow pointing left
-    }
+    btn.innerText = sidebar.classList.contains('closed') ? "❯" : "❮";
 }
 
-// Master Toggle for a Group
 window.toggleGroup = function(groupId, isChecked) {
-    // Find the specific container for this group
     const groupItemsDiv = document.getElementById(`group-${groupId}`);
     const checkboxes = groupItemsDiv.querySelectorAll('.item-check');
     
     checkboxes.forEach(cb => {
         cb.checked = isChecked;
-        // Trigger the onchange event logic manually
-        // 1. Get Cat ID from the toggleLayer call we wrote in HTML, 
-        //    or we can look it up. Easier to just dispatch event or call fn.
-        //    We'll find the category ID by finding the category object based on name relative to checkbox
         const catName = cb.parentElement.querySelector('.cat-name').innerText;
-        
-        // Find ID
         let catId = null;
         categoryGroups.forEach(g => {
             const item = g.items.find(i => i.name === catName);
             if(item) catId = item.id;
         });
-
         if(catId) toggleLayer(catId, isChecked);
     });
 }
@@ -202,18 +187,12 @@ window.toggleLayer = function(id, show) {
 }
 
 window.toggleAll = function(show) {
-    const allGroupChecks = document.querySelectorAll('.group-header input');
-    allGroupChecks.forEach(cb => {
-        cb.checked = show;
-        // toggleGroup works by finding the group ID relative to the loop in init()
-        // But here we are external.
-        // Easiest way: Just click all items.
-    });
+    // Update Group Headers
+    document.querySelectorAll('.group-header input').forEach(cb => cb.checked = show);
 
-    const allItemChecks = document.querySelectorAll('.item-check');
-    allItemChecks.forEach(cb => {
+    // Update Items
+    document.querySelectorAll('.item-check').forEach(cb => {
         cb.checked = show;
-        // Trigger logic
         const catName = cb.parentElement.querySelector('.cat-name').innerText;
         let catId = null;
         categoryGroups.forEach(g => {
@@ -224,7 +203,7 @@ window.toggleAll = function(show) {
     });
 }
 
-// --- 4. CORE MAP FUNCTIONS --- (Same as before)
+// --- 4. MARKERS & SEARCH ---
 
 function createMarker(lat, lng, catId, iconId, title) {
     const anchorPos = currentIconSize / 2;
@@ -246,6 +225,7 @@ function createMarker(lat, lng, catId, iconId, title) {
 
     marker.bindPopup(`<b>${title}</b><br><small>${catName}</small>`);
     
+    // Add to layer group (but don't show on map unless box is checked)
     if(layers[catId]) layers[catId].addLayer(marker);
     allMarkers.push({ marker: marker, catId: catId });
 }
@@ -272,6 +252,7 @@ function filterSearch() {
     allMarkers.forEach(item => {
         const layerGroup = layers[item.catId];
         const matchesSearch = item.marker.options.title.toLowerCase().includes(text);
+        // Only operate on visible layers
         if (map.hasLayer(layerGroup)) {
             if (matchesSearch) {
                 if (!layerGroup.hasLayer(item.marker)) layerGroup.addLayer(item.marker);
@@ -282,6 +263,7 @@ function filterSearch() {
     });
 }
 
+// --- 5. DEV MODE ---
 window.toggleDevMode = function() {
     isDevMode = !isDevMode;
     const btn = document.getElementById('dev-btn');
@@ -314,6 +296,13 @@ map.on('click', function(e) {
     if(!iconId) return;
 
     createMarker(lat, lng, catId, iconId, title);
+
+    // Force show the layer of the pin you just added, so you can see it
+    if (!map.hasLayer(layers[catId])) {
+        map.addLayer(layers[catId]);
+        // Check the box in sidebar
+        // (Complex to find exact checkbox from here, but pin will show up)
+    }
 
     const jsonLine = `{ "lat": ${lat}, "lng": ${lng}, "cat": "${catId}", "icon": "${iconId}", "title": "${title}" },\n`;
     const outputBox = document.getElementById('json-output');

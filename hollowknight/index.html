@@ -4,109 +4,84 @@
     <title>Hollow Knight Map</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    
     <style>
-        body { margin: 0; background: #0c0c0c; font-family: sans-serif; }
-        #map { width: 100vw; height: 100vh; background: #0c0c0c; }
+        /* 1. Set the whole page background to black */
+        body { margin: 0; background: #000; overflow: hidden; }
         
-        .controls {
-            position: absolute; top: 10px; right: 10px; z-index: 1000;
-            background: rgba(0,0,0,0.9); padding: 15px; width: 200px;
-            border: 1px solid #555; color: white; border-radius: 5px;
+        /* 2. Ensure the map container is black to hide "grey squares" in empty space */
+        #map { width: 100vw; height: 100vh; background: #000; }
+
+        /* 3. Hide "broken image" borders if the browser tries to load a tile that doesn't exist */
+        img.leaflet-tile { 
+            background: transparent !important; 
+            border: none !important;
         }
-        button {
-            display: block; width: 100%; padding: 10px; margin-bottom: 5px;
-            background: #333; color: #fff; border: 1px solid #666; cursor: pointer;
-        }
-        button:hover { background: #555; }
-        button.active { background: #28a745; border-color: #28a745; }
     </style>
 </head>
 <body>
 
     <div id="map"></div>
-    
-    <div class="controls">
-        <strong>🔧 Configuration</strong><hr>
-        <button onclick="toggle('swap')" id="btn-swap" class="active">🔀 Swap X/Y (On)</button>
-        <button onclick="toggle('invert')" id="btn-inv">↕️ Invert Y Axis</button>
-    </div>
 
+    <!-- Leaflet JS -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script>
+        // --- CONFIGURATION ---
         const TILE_SIZE = 256;
         
-        // STATE
-        // We default SwapXY to true because you confirmed it connects the images correctly.
-        let state = {
-            swapXY: true, 
-            invertY: false 
-        };
-
-        // SETUP MAP
+        // 1. SETUP MAP
         const map = L.map('map', {
-            crs: L.CRS.Simple,
+            crs: L.CRS.Simple, // Flat coordinates for games
             minZoom: 0,
             maxZoom: 9,
-            zoomControl: false
+            zoomControl: false, // We add it back in a specific spot
+            attributionControl: false
         });
 
-        // CUSTOM LAYER
-        const Layer = L.TileLayer.extend({
+        // 2. CUSTOM TILE LAYER
+        // This contains the logic that fixed your map (Swap X/Y enabled)
+        const HollowKnightLayer = L.TileLayer.extend({
             getTileUrl: function(coords) {
                 let z = coords.z;
                 let x = coords.x;
                 let y = coords.y;
                 
-                // 1. STOP MIRRORING (The Fix)
-                // If y is negative (scrolling up above the map), don't load anything.
+                // PREVENT MIRRORING:
+                // If y is negative (scrolling up past the top), don't load anything.
                 if (y < 0) return ""; 
                 
-                // 2. Handle Inversion (Optional toggle)
-                if (state.invertY) {
-                    y = (Math.pow(2, z) - 1) - y;
-                }
-
-                // 3. Handle Folder Swapping (The logic that fixed your puzzle)
-                // Note: vips/deepzoom often saves as 'column/row' (x/y) but sometimes 'row/column' (y/x)
-                if (state.swapXY) {
-                    // Use Y for the folder, X for the file
-                    return `my_tiles/${z}/${y}/${x}.png`;
-                } else {
-                    // Standard: Use X for the folder, Y for the file
-                    return `my_tiles/${z}/${x}/${y}.png`;
-                }
+                // SWAP LOGIC (Hardcoded ON):
+                // Your map generator saved folders as Z / Row / Col
+                // So we put 'y' in the folder spot, and 'x' in the file spot.
+                return `my_tiles/${z}/${y}/${x}.png`;
             }
         });
 
-        let tileLayer = new Layer('', {
+        // Add the layer to the map
+        new HollowKnightLayer('', {
             tileSize: TILE_SIZE,
             noWrap: true,
-            bounds: [[-100000, -100000], [100000, 100000]],
-            errorTileUrl: '' 
+            bounds: [[-100000, -100000], [100000, 100000]], // Allow scrolling far
+            errorTileUrl: '' // If a tile is missing, show nothing (transparent)
         }).addTo(map);
 
-        // VIEW
-        map.setView([-100, 100], 4);
-        L.control.zoom({ position: 'topleft' }).addTo(map);
+        // 3. VIEW SETTINGS
+        // Center roughly in the middle of the content
+        map.setView([-100, 100], 4); 
 
-        // LOGIC
-        function toggle(mode) {
-            if(mode === 'swap') state.swapXY = !state.swapXY;
-            if(mode === 'invert') state.invertY = !state.invertY;
-            
-            // Update Button Visuals
-            const btnSwap = document.getElementById('btn-swap');
-            const btnInv = document.getElementById('btn-inv');
-            
-            btnSwap.className = state.swapXY ? 'active' : '';
-            btnSwap.innerText = state.swapXY ? '🔀 Swap X/Y (On)' : '🔀 Swap X/Y (Off)';
-            
-            btnInv.className = state.invertY ? 'active' : '';
-            btnInv.innerText = state.invertY ? '↕️ Invert Y (On)' : '↕️ Invert Y (Off)';
+        // 4. CONTROLS
+        L.control.zoom({ position: 'topright' }).addTo(map);
 
-            tileLayer.redraw();
-        }
+        // 5. CLICK LISTENER (For adding markers later)
+        // This prints coordinates to the Console (F12) when you click, 
+        // so you can find locations for your icons easily.
+        map.on('click', function(e) {
+            console.log("Coordinates:", e.latlng.lng.toFixed(0), e.latlng.lat.toFixed(0));
+        });
+
     </script>
 </body>
 </html>

@@ -140,7 +140,7 @@ const savedPins = [
 { "lat": -54.419562, "lng": 64.929688, "cat": "vendor", "icon": "Nailsmith_Circle", "title": "Nailsmith" },
 { "lat": -54.966559, "lng": 82.345703, "cat": "vendor", "icon": "Lemm_Circle", "title": "Relic Seeker Lemm" },
 { "lat": -56.663719, "lng": 88.011719, "cat": "vendor", "icon": "Tuk_Circle", "title": "Tuk" },
-{ "lat": -43.527195, "lng": 117.007813, "cat": "vendor", "icon": "Little_Fool_Circle", "title": "Little Fool" }
+{ "lat": -43.527195, "lng": 117.007813, "cat": "vendor", "icon": "Little_Fool_Circle", "title": "Little Fool" },
 
 
 ];

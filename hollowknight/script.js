@@ -37,7 +37,8 @@ const categoryGroups = [
         items: [
             { id: 'boss',       name: 'Boss',           icon: '35.png' },
             { id: 'root',       name: 'Whispering Root', icon: '14.png' },
-            { id: 'area_map',       name: 'Cornifer', icon: '5.png' }
+            { id: 'area_map',   name: 'Cornifer', icon: 'Cornifer_Circle.png' },
+            { id: 'vendor',     name: 'Vendor', icon: 'bag-icon.png' }
         ]
     }
 ];

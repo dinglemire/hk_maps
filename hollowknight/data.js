@@ -125,8 +125,11 @@ const savedPins = [
 { "lat": -29.243855, "lng": 6.031250, "cat": "nailart", "icon": "Icon_HK_Great_Slash", "title": "Great Slash" },
 { "lat": -11.902084, "lng": 34.167969, "cat": "nailart", "icon": "Icon_HK_Cyclone_Slash", "title": "Cyclone Slash" },
 { "lat": -61.632457, "lng": 136.399722, "cat": "nailart", "icon": "Icon_HK_Dash_Slash", "title": "Dash Slash" },
-
-
-
+{ "lat": -26.956745, "lng": 58.597656, "cat": "spell", "icon": "Icon_HK_Vengeful_Spirit", "title": "Vengeful Spirit" },
+{ "lat": -39.405869, "lng": 25.380859, "cat": "spell", "icon": "Icon_HK_Howling_Wraiths", "title": "Howling Wraiths" },
+{ "lat": -40.626529, "lng": 79.982422, "cat": "spell", "icon": "Icon_HK_Desolate_Dive", "title": "Desolate Dive" },
+{ "lat": -43.699161, "lng": 80.882813, "cat": "spell", "icon": "Icon_HK_Shade_Soul", "title": "Shade Soul" },
+{ "lat": -24.245920, "lng": 103.658203, "cat": "spell", "icon": "Icon_HK_Descending_Dark", "title": "Descending Dark" },
+{ "lat": -87.411966, "lng": 71.914063, "cat": "spell", "icon": "Icon_HK_Abyss_Shriek", "title": "Abyss Shriek (Stand on the pedestal and cast Howling Wraiths)" }
 
 ];

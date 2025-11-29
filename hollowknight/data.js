@@ -121,7 +121,11 @@ const savedPins = [
 { "lat": -63.759334, "lng": 104.919922, "cat": "ability", "icon": "Icon_HK_Isma's_Tear", "title": "Isma's Tear" },
 { "lat": -18.804470, "lng": 107.148438, "cat": "ability", "icon": "Icon_HK_Crystal_Heart", "title": "Crystal Heart" },
 { "lat": -30.893952, "lng": 102.994141, "cat": "ability", "icon": "Icon_HK_Dream_Nail", "title": "Dream Nail" },
-{ "lat": -27.191167, "lng": 105.076172, "cat": "ability", "icon": "Icon_HK_Dreamgate", "title": "Dreamgate (obtained from the Seer for 900 Essence)" }
+{ "lat": -27.191167, "lng": 105.076172, "cat": "ability", "icon": "Icon_HK_Dreamgate", "title": "Dreamgate (obtained from the Seer for 900 Essence)" },
+{ "lat": -29.243855, "lng": 6.031250, "cat": "nailart", "icon": "Icon_HK_Great_Slash", "title": "Great Slash" },
+{ "lat": -11.902084, "lng": 34.167969, "cat": "nailart", "icon": "Icon_HK_Cyclone_Slash", "title": "Cyclone Slash" },
+{ "lat": -61.632457, "lng": 136.399722, "cat": "nailart", "icon": "Icon_HK_Dash_Slash", "title": "Dash Slash" },
+
 
 
 

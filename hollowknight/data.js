@@ -116,7 +116,7 @@ const savedPins = [
 { "lat": -31.927734, "lng": 110.292589, "cat": "grub", "icon": "27", "title": "Captive Grub" },
 { "lat": -22.656386, "lng": 14.755859, "cat": "ability", "icon": "Icon_HK_Mothwing_Cloak", "title": "Mothwing Cloak" },
 { "lat": -54.689503, "lng": 48.144531, "cat": "ability", "icon": "Icon_HK_Mantis_Claw", "title": "Mantis Claw" },
-{ "lat": -73.706656, "lng": 55.945313, "cat": "ability", "icon": "77", "title": "Monarch Wings" },
+{ "lat": -73.706656, "lng": 55.945313, "cat": "ability", "icon": "Icon_HK_Monarch_Wings", "title": "Monarch Wings" },
 { "lat": -86.728210, "lng": 107.361328, "cat": "ability", "icon": "Icon_HK_Shade_Cloak", "title": "Shade Cloak" },
 { "lat": -63.759334, "lng": 104.919922, "cat": "ability", "icon": "Icon_HK_Isma's_Tear", "title": "Isma's Tear" },
 { "lat": -18.804470, "lng": 107.148438, "cat": "ability", "icon": "Icon_HK_Crystal_Heart", "title": "Crystal Heart" },

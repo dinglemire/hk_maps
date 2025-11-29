@@ -130,6 +130,17 @@ const savedPins = [
 { "lat": -40.626529, "lng": 79.982422, "cat": "spell", "icon": "Icon_HK_Desolate_Dive", "title": "Desolate Dive" },
 { "lat": -43.699161, "lng": 80.882813, "cat": "spell", "icon": "Icon_HK_Shade_Soul", "title": "Shade Soul" },
 { "lat": -24.245920, "lng": 103.658203, "cat": "spell", "icon": "Icon_HK_Descending_Dark", "title": "Descending Dark" },
-{ "lat": -87.411966, "lng": 71.914063, "cat": "spell", "icon": "Icon_HK_Abyss_Shriek", "title": "Abyss Shriek (Stand on the pedestal and cast Howling Wraiths)" }
+{ "lat": -87.411966, "lng": 71.914063, "cat": "spell", "icon": "Icon_HK_Abyss_Shriek", "title": "Abyss Shriek (Stand on the pedestal and cast Howling Wraiths)" },
+{ "lat": -18.560252, "lng": 54.302734, "cat": "vendor", "icon": "Divine_Circle", "title": "Divine (he arrives in Dirtmouth along with the rest of the Troupe with the lighting of the Nightmare Lantern)" },
+{ "lat": -18.618812, "lng": 56.496094, "cat": "vendor", "icon": "Sly_Circle", "title": "Sly's Shop (Opens after encountering Sly at the Forgotten Crossroads)" },
+{ "lat": -32.762919, "lng": 78.480469, "cat": "vendor", "icon": "Sly_Circle", "title": "Sly (trigger, before he moves to Dirtmouth)" },
+{ "lat": -18.589258, "lng": 58.173828, "cat": "vendor", "icon": "Iselda_Circle", "title": "Iselda (Opens after Cornifer and False Knight progress)" },
+{ "lat": -32.280965, "lng": 81.943359, "cat": "vendor", "icon": "Salubra_Circle", "title": "Salubra" },
+{ "lat": -38.685189, "lng": 57.398438, "cat": "vendor", "icon": "Legeater_Circle", "title": "Leg Eater" },
+{ "lat": -54.419562, "lng": 64.929688, "cat": "vendor", "icon": "Nailsmith_Circle", "title": "Nailsmith" },
+{ "lat": -54.966559, "lng": 82.345703, "cat": "vendor", "icon": "Lemm_Circle", "title": "Relic Seeker Lemm" },
+{ "lat": -56.663719, "lng": 88.011719, "cat": "vendor", "icon": "Tuk_Circle", "title": "Tuk" },
+{ "lat": -43.527195, "lng": 117.007813, "cat": "vendor", "icon": "Little_Fool_Circle", "title": "Little Fool" }
+
 
 ];

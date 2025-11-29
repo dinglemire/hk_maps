@@ -25,9 +25,9 @@ const categoryGroups = [
         id: 'eq_group',
         groupName: "Equipment",
         items: [
-            { id: 'ability',    name: 'Ability',        icon: '29.png' }, 
-            { id: 'nailart',    name: 'Nail Art',       icon: '29.png' }, 
-            { id: 'spell',      name: 'Spell',          icon: '29.png' }, 
+            { id: 'ability',    name: 'Ability',        icon: 'Icon_HK_Mothwing_Cloak.png' }, 
+            { id: 'nailart',    name: 'Nail Art',       icon: 'Icon_HK_Cyclone_Slash.png' }, 
+            { id: 'spell',      name: 'Spell',          icon: 'Icon_HK_Vengeful_Spirit.png' }, 
             { id: 'charm',      name: 'Charm',          icon: '44.png' }
         ]
     },
